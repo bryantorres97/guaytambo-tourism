@@ -1,0 +1,22 @@
+{
+    "login" : {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login",
+        "createAccount": "Create account"        
+    },
+
+    "profile": {
+        "preferences": "Preferences",
+        "darkMode": "Dark mode",
+        "saved": "Saved",
+        "likes": "Likes"
+    },
+    
+    "tabs" : {
+        "catalogue": "Catalogue",
+        "map": "Map",
+        "view3D": "3D View",
+        "profile": "Profile"
+    }
+}
