@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -12,6 +13,16 @@ import { AppComponent } from './app.component';
 
 // SECTION - Ionic Modulos
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
+// Angular Fire
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+// SECTION -  Translation
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +32,23 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     AppRoutingModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,181 @@
+.mainSlide,
+.mainSlide ion-slide {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 120px;
+}
+
+.pick-avatar {
+  width: 80px;
+  opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+  transition: opacity 0.5s linear;
+  opacity: 1 !important;
+}
+
+// SECTION TEMA PRINCIPAL
+
+// .login-header {
+//   background: var(--theme-color);
+// }
+
+// .login-header {
+//   position: relative;
+//   background: var(--theme-color);
+//   border-radius: 0em;
+// }
+
+// .login-header:after {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   left: 15%;
+//   width: 0;
+//   height: 0;
+//   border: 20px solid transparent;
+//   border-top-color: var(--theme-color);
+//   border-bottom: 0;
+//   margin-left: -15px;
+//   margin-bottom: -15px;
+// }
+
+.logo-img {
+  display: block;
+  width: 60px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+[heading-column-lr] {
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+[big-heading] {
+  font-family: "Heebo-Bold" !important;
+  font-size: 30px !important;
+  color: var(--theme-black);
+  text-align: start;
+}
+
+[small-heading] {
+  font-family: "Heebo-Regular" !important;
+  margin-left: auto;
+  padding-right: 40px;
+  font-size: 15px;
+  text-align: right;
+}
+
+
+ion-label {
+  color: #fafafa;
+  opacity: .8;
+  font-size: 13px;
+  display: block;
+}
+
+ion-content {
+  --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../assets/img/cover.jpg) center center / cover no-repeat;
+}
+
+
+
+[transparent] {
+  --background: transparent;
+}
+
+ion-input {
+  --color: #fafafa;
+  --padding-bottom: 5px;
+  --padding-top: 5px;
+  --padding-start: 5px;
+  font-size: 14px;
+  text-indent: 1px;
+  padding-left: 10px !important;
+}
+
+ion-item {
+  --highlight-color-focused: transparent;
+  --highlight-height: 0;
+  --highlight-color-invalid: #845EC2;
+  --highlight-color-valid: #ddd;
+  --min-height: 40px;
+  --padding-start: 5px;
+}
+
+[linespace] {
+  height: 30px;
+}
+
+ion-label {
+  color: #fafafa;
+  opacity: .8;
+  font-size: 13px;
+  display: block;
+}
+
+.forget-password {
+  color: #fafafa;
+  font-size: 13px;
+  display: block;
+  text-align: right;
+  padding: 10px;
+}
+
+ion-icon {
+  color: #fafafa;
+}
+
+.btn-login {
+  --background: #00C2A8;
+  color: #fafafa;
+}
+
+.btn-facebook {
+  --background: #3b5998;
+  color: #fafafa;
+}
+
+.btn-invitado {
+  --background: #845EC2;
+  color: #fafafa;
+}
+
+ion-button {
+  text-transform: capitalize;
+}
+
+.btn-registro {
+  --color: #fafafa;
+  font-size: 14px;
+}
+
+ion-button {
+  --opacity: 0.8;
+}
+
+.is-invalid{
+  border-bottom: 1px solid #b80d57;
+}
+
+.icon-invalid {
+  color: #b80d57;
+}
+
+.errorMessage {
+  color: #b80d57;
+  font-weight: bold;
+}
+
+.error {
+  --background: #000000;
+  padding: 0px;
+  opacity: 0.7;
+}

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { Tab4PageRoutingModule } from './tab4-routing.module';
 
-import { LoginPage } from './login.page';
+import { Tab4Page } from './tab4.page';
 
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -18,7 +18,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
     HttpClientModule,
     TranslateModule.forChild({
       loader: {
@@ -28,8 +27,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         },
         deps: [HttpClient]
       }
-    })
+    }),
+    Tab4PageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [Tab4Page]
 })
-export class LoginPageModule {}
+export class Tab4PageModule {}

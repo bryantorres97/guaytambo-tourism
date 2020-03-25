@@ -1,0 +1,48 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab Three
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="header">
+    <h2>Bryan Torres</h2>
+
+    <div class="space-between">
+      <div class="followings">
+        <ion-badge color="primary" mode="ios">42</ion-badge>
+        <p>{{ 'profile.likes' | translate }}</p>   
+      </div>
+
+      <div class="followings">
+        <ion-badge color="primary" mode="ios">42</ion-badge>
+        <p>{{ 'profile.saved' | translate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="border-blue">
+      <div class="border-white">
+        <div class="img-box">
+          <!-- <img src="assets/img/167030.jpg" alt="">     -->
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <ion-item>
+    <ion-label>{{ 'profile.preferences' | translate }}</ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-icon slot="start" name="moon"></ion-icon>
+      <ion-label>{{ 'profile.darkMode' | translate }}</ion-label>
+      <ion-toggle slot="end"
+                  [ngModel]="darkMode"
+                  (ionChange)="changeTheme()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>
