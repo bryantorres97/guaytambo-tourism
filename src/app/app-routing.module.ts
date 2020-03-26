@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'tab4',
     loadChildren: () => import('./pages/tab4/tab4.module').then( m => m.Tab4PageModule)
+  },
+  {
+    path: 'sitios',
+    loadChildren: () => import('./pages/sitios/sitios.module').then( m => m.SitiosPageModule)
   }
 ];
 @NgModule({
