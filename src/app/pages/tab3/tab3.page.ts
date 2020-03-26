@@ -19,7 +19,7 @@ export class Tab3Page {
 
   private mapboxMap() {
     mapboxgl.accessToken = this.mapboxToken;
-    var map = new mapboxgl.Map({
+    let map = new mapboxgl.Map({
       style: 'mapbox://styles/mapbox/light-v10',
       center: [-78.6269361, -1.2412194],
       zoom: 15.5,
@@ -33,9 +33,9 @@ export class Tab3Page {
     map.on('load', () => {
       map.resize();
       // Insert the layer beneath any symbol layer.
-      var layers = map.getStyle().layers;
-      var labelLayerId;
-      for (var i = 0; i < layers.length; i++) {
+      let layers = map.getStyle().layers;
+      let labelLayerId;
+      for (let i = 0; i < layers.length; i++) {
         if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
           labelLayerId = layers[i].id;
           break;
@@ -75,7 +75,7 @@ export class Tab3Page {
       }, labelLayerId);
     });
 
-    var marker = new mapboxgl.Marker({
+    let marker = new mapboxgl.Marker({
       draggable: false
     })
       .setLngLat([-78.6269361, -1.2412194])
