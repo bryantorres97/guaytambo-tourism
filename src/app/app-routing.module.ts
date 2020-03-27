@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'sitios',
     loadChildren: () => import('./pages/sitios/sitios.module').then( m => m.SitiosPageModule)
+  },
+  {
+    path: 'sitio',
+    loadChildren: () => import('./pages/sitio/sitio.module').then( m => m.SitioPageModule)
   }
 ];
 @NgModule({
