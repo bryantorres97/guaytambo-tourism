@@ -48,6 +48,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'sitios',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../sitios/sitios.module').then(m => m.SitiosPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

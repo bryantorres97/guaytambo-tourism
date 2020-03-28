@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SitiosPage implements OnInit {
 
+  visible = false;
+
   constructor() { }
 
   ngOnInit() {

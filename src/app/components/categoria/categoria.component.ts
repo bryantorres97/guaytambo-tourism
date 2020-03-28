@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categoria',
@@ -11,8 +12,12 @@ export class CategoriaComponent implements OnInit {
 
   img1: string = '/assets/img/cover.jpg'; 
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {}
+
+  verSitios() {
+    this.router.navigate(['/tabs/sitios']);
+  }
 
 }

@@ -5,14 +5,16 @@ import { PipesModule } from '../pipes/pipes.module';
 
 import { CategoriasComponent } from './categorias/categorias.component';
 import { CategoriaComponent } from './categoria/categoria.component';
-
-
+import { SitioCardComponent } from './sitio-card/sitio-card.component';
+import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
 
 
 @NgModule({
   declarations: [
     CategoriaComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    SitioCardComponent,
+    SitiosListaComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CategoriaComponent } from './categoria/categoria.component';
     PipesModule
   ],
   exports: [
-    CategoriasComponent
+    CategoriasComponent,
+    SitiosListaComponent
   ]
 })
 export class ComponentsModule { }

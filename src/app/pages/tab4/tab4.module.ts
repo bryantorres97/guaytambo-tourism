@@ -1,8 +1,8 @@
+import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
 
 import { Tab4PageRoutingModule } from './tab4-routing.module';
 
@@ -12,12 +12,14 @@ import { Tab4Page } from './tab4.page';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
+    RouterModule.forChild([{ path: '', component: Tab4Page }]),
     HttpClientModule,
     TranslateModule.forChild({
       loader: {
@@ -27,8 +29,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         },
         deps: [HttpClient]
       }
-    }),
-    Tab4PageRoutingModule
+    })
+    // Tab4PageRoutingModule
   ],
   declarations: [Tab4Page]
 })
