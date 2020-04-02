@@ -28,15 +28,18 @@ export class DomSanatizerPipe implements PipeTransform {
     }
 
     if (args[1] !== undefined) {
-      color1 = this.hexToRGB(args[1]);
+      color2 = this.hexToRGB(args[1]);
     }
 
+    console.log(img);
+    // console.log(color2);
+    
     const domImg = `--background: 
-                    linear-gradient(
-                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.5),
-                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.5)),
+                    linear-gradient(to bottom right,
+                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.7),
+                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.7)),
                     url('${img}') center center / cover no-repeat`;
-    // console.log(args[0]);
+    
 
     return this.domSanatizer.bypassSecurityTrustStyle(domImg);
   }
