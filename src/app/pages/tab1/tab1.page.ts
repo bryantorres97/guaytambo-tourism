@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  categories: any[] = [];
+
+  constructor(private categoriaService: CategoriaService) {
+    this.categoriaService.getCategorias().subscribe( resp => {
+      // console.log(resp);
+      this.categories = resp['categorias'];
+      console.log(this.categories);
+    });
+  }
 
 }
