@@ -48,7 +48,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'sitios',
+        path: 'sitios/:id',
         children: [
           {
             path: '',

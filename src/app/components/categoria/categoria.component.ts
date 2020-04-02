@@ -8,16 +8,18 @@ import { Router } from '@angular/router';
 })
 export class CategoriaComponent implements OnInit {
 
-  @Input() categoria: any = {};
+  @Input() categoria: Categoria;
 
   img1: string = '/assets/img/cover.jpg'; 
 
   constructor( private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // console.log(this.categoria);
+  }
 
-  verSitios() {
-    this.router.navigate(['/tabs/sitios']);
+  verSitios( id: string) {
+    this.router.navigate(['/tabs/sitios', id]);
   }
 
 }
