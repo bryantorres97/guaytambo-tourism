@@ -12,6 +12,7 @@ import { LoginPage } from './login.page';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     IonicModule,
     LoginPageRoutingModule,
     HttpClientModule,
+    ComponentsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

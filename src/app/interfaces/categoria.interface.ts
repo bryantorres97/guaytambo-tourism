@@ -1,4 +1,4 @@
-interface Categoria {
+export interface Categoria {
     _id: string,
     nombreEs: string,
     nombreEn: string,

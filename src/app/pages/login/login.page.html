@@ -108,25 +108,8 @@
     <ion-slide>
       <ion-grid fixed>
 
-        <ion-row>
-          <ion-col>
-            <h3 style="color: #fafafa">Seleccione Avatar</h3>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-slides [options]="avatarSlide">
-              <ion-slide *ngFor="let avatar of avatars">
-                <ion-img class="pick-avatar" src="/assets/avatars/{{avatar.img}}"
-                  [ngClass]="{'pick-avatar-seleccionado': avatar.seleccionado}" (click)="seleccionarAvatar( avatar )">
-                </ion-img>
-                <ion-label style="color: white;">.</ion-label>
-              </ion-slide>
-            </ion-slides>
-          </ion-col>
-        </ion-row>
-
+        <!-- TODO Insertar el avatar selector-->
+        <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
         <form (ngSubmit)="registroMail(fRegistro)" #fRegistro="ngForm">
           <ion-row>
             

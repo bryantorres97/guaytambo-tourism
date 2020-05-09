@@ -3,7 +3,8 @@ ion-content ion-toolbar {
 }
 
 ion-content {
-  --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),
+  --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),    
     url(../../../assets/img/cover.jpg) center center / cover no-repeat;
+    // filter: blur(4px);
 }
 

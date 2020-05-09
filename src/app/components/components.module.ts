@@ -7,6 +7,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SitioCardComponent } from './sitio-card/sitio-card.component';
 import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
+import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
     CategoriaComponent,
     CategoriasComponent,
     SitioCardComponent,
-    SitiosListaComponent
+    SitiosListaComponent,
+    AvatarSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
   ],
   exports: [
     CategoriasComponent,
-    SitiosListaComponent
+    SitiosListaComponent,
+    AvatarSelectorComponent
   ]
 })
 export class ComponentsModule { }

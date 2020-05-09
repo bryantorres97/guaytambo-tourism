@@ -1,9 +1,22 @@
 
-// ion-tab-bar {
-//     --background: var(--theme-green);
+ion-tab-bar {
+    background-color: rgba(var(--ion-color-light-rgb), 0.6);
+}
+
+ion-tab-button {
+    --color: var(--theme-tab-icons);
+    // --color-selected: #FFFFFF;
+}
+
+// .tabs {
+//     position: absolute;
+//     bottom: 0px;
+//     // height: 8%;
+//     width: 100%;
+//     display: flex;
+//     align-items: flex-end;
+//     justify-content: center;
+//     // color: red;
+//     background-color: rgba(var(--ion-color-light-rgb), 0.6);
 // }
 
-// ion-tab-button {
-//     --color: var(--theme-icons);
-//     --color-selected: #FFFFFF;
-// }

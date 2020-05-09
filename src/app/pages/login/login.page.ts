@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { FireAuthService } from 'src/app/services/fire-auth.service';
 import { NgForm } from '@angular/forms';
+import { Usuario } from 'src/app/interfaces/usuario.interface';
+import { LocalAuthService } from 'src/app/services/local-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,61 +14,24 @@ export class LoginPage implements OnInit {
   
   @ViewChild('slidePrincipal', {static: false}) slides: IonSlides;
 
-  avatars = [
-    {
-      img: 'av-1.png',
-      seleccionado: true
-    },
-    {
-      img: 'av-2.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-3.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-4.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-5.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-6.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-7.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-8.png',
-      seleccionado: false
-    },
-  ];
+  usuario: Usuario;
 
   ventanaLogin = true;
-
-  avatarSlide = {
-    slidesPerView: 3.5
-  };
 
   loginUser = {
     email: '',
     password: ''
   };
-
   
   registerUser = {
+    avatar: '',
     nick: '',
     email: '',
     password: '',
     verifyPassword: ''
   };
 
-  constructor(private auth: FireAuthService) { }
+  constructor(private auth: FireAuthService, private lauth: LocalAuthService) { }
 
   ngOnInit() {
   }
@@ -92,13 +57,21 @@ export class LoginPage implements OnInit {
  
    registroMail(fRegistro: NgForm) {
      console.log(fRegistro.valid);
-     this.auth.registerUser(this.registerUser.email, this.registerUser.password);
+     // this.auth.registerUser(this.registerUser.email, this.registerUser.password);
+     if ( this.registerUser.avatar.length === 0) {
+      this.registerUser.avatar = 'av-1.png';
+     }
+      this.usuario = {
+        tipo: 'email',
+        email: this.registerUser.email,
+        avatar: this.registerUser.avatar,
+        nickname: this.registerUser.nick
+      }
+      
+      this.lauth.registerUser(this.usuario).subscribe( console.log );
    }
  
-   seleccionarAvatar( avatar ) {
-     this.avatars.forEach( av => av.seleccionado = false);
-     avatar.seleccionado = true;
-   }
+
  
    mostrarRegistro() {
      this.slides.lockSwipes(false);

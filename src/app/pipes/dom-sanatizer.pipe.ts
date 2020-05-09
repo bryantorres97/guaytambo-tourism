@@ -31,13 +31,13 @@ export class DomSanatizerPipe implements PipeTransform {
       color2 = this.hexToRGB(args[1]);
     }
 
-    console.log(img);
+    // console.log(img);
     // console.log(color2);
     
     const domImg = `--background: 
                     linear-gradient(to bottom right,
-                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.7),
-                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.7)),
+                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.6),
+                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.6)),
                     url('${img}') center center / cover no-repeat`;
     
 

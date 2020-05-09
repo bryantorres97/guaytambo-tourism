@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sitios-lista',
@@ -9,8 +10,10 @@ export class SitiosListaComponent implements OnInit {
 
   @Input() sitios: any[] = [];
   
-  constructor() { }
+  constructor( private activatedRoute: ActivatedRoute ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log( this.activatedRoute.snapshot.params.id );
+  }
 
 }
