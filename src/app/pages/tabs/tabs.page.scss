@@ -1,11 +1,40 @@
 
+
+ion-content {
+    --background: url('/assets/img/cover.jpg') no-repeat center center fixed cover;
+    --background-size: cover;
+}
+
+ion-item {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+
+ion-tabs {
+    --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/assets/img/cover.jpg') no-repeat center center fixed cover;
+    --background-size: cover;
+
+}
+
 ion-tab-bar {
-    background-color: rgba(var(--ion-color-light-rgb), 0.6);
+    --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),url('/assets/img/cover.jpg') no-repeat center center fixed cover;
+    --background-size: cover;
+
+}
+
+.bg-image {
+    background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5)),url('/assets/img/cover.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.no-scroll .scroll-content {
+    overflow: hidden;
 }
 
 ion-tab-button {
     --color: var(--theme-tab-icons);
-    // --color-selected: #FFFFFF;
 }
 
 // .tabs {

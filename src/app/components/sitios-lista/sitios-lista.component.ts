@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Sitio } from 'src/app/interfaces/sitio.interface';
 
 @Component({
   selector: 'app-sitios-lista',
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SitiosListaComponent implements OnInit {
 
-  @Input() sitios: any[] = [];
+  @Input() sitios: Sitio[] = [];
   
   constructor( private activatedRoute: ActivatedRoute ) { }
 

@@ -8,6 +8,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { SitioCardComponent } from './sitio-card/sitio-card.component';
 import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
+import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.compo
     CategoriasComponent,
     SitioCardComponent,
     SitiosListaComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    DetalleSitioComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,10 @@ import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.compo
     CategoriasComponent,
     SitiosListaComponent,
     AvatarSelectorComponent
+  ],
+
+  entryComponents: [
+    DetalleSitioComponent
   ]
 })
 export class ComponentsModule { }

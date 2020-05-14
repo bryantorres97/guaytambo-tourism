@@ -15,15 +15,15 @@ import { from } from 'rxjs';
 export class Tab2Page implements OnInit {
 
   mapaClaro = {
-    tileLayer: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-    credits: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
-    maxzoom: 18
+    tileLayer: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=eab9d631d6be4009b34a7a5a34ee2f59',
+    credits: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxzoom: 22
   }
 
   mapaOscuro = {
-    tileLayer: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    credits: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxzoom: 19
+    tileLayer: 'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=eab9d631d6be4009b34a7a5a34ee2f59',
+    credits: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxzoom: 22
   }
 
   map: Map;
@@ -94,7 +94,8 @@ export class Tab2Page implements OnInit {
   private crearMarcadoresSitios() {
     from(this.sitios).subscribe((sitio: Sitio) => {
       const marcador = this.crearIcono(sitio.categoria.marcador || 'default.svg');
-      marker([sitio.latitud, sitio.longitud], { icon: marcador }).addTo(this.map).bindPopup('Ionic 4 <br> Leaflet.');
+      marker([sitio.latitud, sitio.longitud], { icon: marcador }).addTo(this.map)
+      .bindPopup(`${sitio.nombreEs}`);
     })
   }
 

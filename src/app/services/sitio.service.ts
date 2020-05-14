@@ -22,4 +22,9 @@ export class SitioService {
     const params = new HttpParams().set('id', id);
     return this.http.get(`${URL}/sitio`, {params});
   }
+
+  public getSitiosByCategoria( id: string) {
+    const params = new HttpParams().set('id', id);
+    return this.http.get(`${URL}/sitiosporcategoria`, {params});
+  }
 }

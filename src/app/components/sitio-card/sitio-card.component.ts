@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Sitio } from 'src/app/interfaces/sitio.interface';
+import { ModalController } from '@ionic/angular';
+import { DetalleSitioComponent } from '../detalle-sitio/detalle-sitio.component';
 
 @Component({
   selector: 'app-sitio-card',
@@ -7,10 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SitioCardComponent implements OnInit {
 
-  @Input() sitio: any = {};
+  @Input() sitio: Sitio = {};
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
+
+  async verDetalleSitio(sitio: Sitio) {
+    const modal = await this.modalController.create({
+      component: DetalleSitioComponent,
+      componentProps: {sitio}
+    });
+
+    modal.present();
+  }
 
 }
