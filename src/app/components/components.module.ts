@@ -32,7 +32,8 @@ import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
   ],
 
   entryComponents: [
-    DetalleSitioComponent
+    DetalleSitioComponent,
+    SitioCardComponent
   ]
 })
 export class ComponentsModule { }

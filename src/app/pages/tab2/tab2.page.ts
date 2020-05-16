@@ -95,7 +95,7 @@ export class Tab2Page implements OnInit {
     from(this.sitios).subscribe((sitio: Sitio) => {
       const marcador = this.crearIcono(sitio.categoria.marcador || 'default.svg');
       marker([sitio.latitud, sitio.longitud], { icon: marcador }).addTo(this.map)
-      .bindPopup(`${sitio.nombreEs}`);
+      .bindPopup('hola');
     })
   }
 

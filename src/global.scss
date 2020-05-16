@@ -24,3 +24,10 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.overview {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    line-height : 25px !important;
+}

@@ -1,4 +1,8 @@
-
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title>{{sitio.nombreEs}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content> 
   <!-- <div style="background-image: url(assets/img/cover.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; position: absolute; z-index: -1;"></div>  -->
   <div class="header" [style]=" ( sitio.imagenPortada | imagen: 'sitio'
@@ -30,21 +34,101 @@
     </div>
   </div>
 
-  <ion-item>
-    <!-- <ion-label>{{ 'profile.preferences' | translate }}</ion-label> -->
-    <ion-label>Hola</ion-label>
-  </ion-item>
-  <ion-list>
-    <ion-label>Hola</ion-label>
-    <ion-label>Hola</ion-label>
-    <!-- <ion-item>
-      <ion-icon slot="start" name="moon"></ion-icon>
-      <ion-label>{{ 'profile.darkMode' | translate }}</ion-label>
-      <ion-toggle slot="end"
-                  [ngModel]="darkMode"
-                  (ionChange)="changeTheme()"></ion-toggle>
-    </ion-item> -->
-  </ion-list>
+  <ion-grid fixed>
+    <!-- SECTION - Informacion general -mapa -->
+    <ion-row>
+      <ion-col size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header color="primary">        
+            
+            <ion-card-subtitle> 
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Información general
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content color="medium">
+            <p class="overview" style="padding-top: 5px;">
+              {{sitio.descripcionEs}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header color="secondary" fill="outline">           
+            
+            <ion-card-subtitle> 
+              <ion-icon name="location-outline"></ion-icon>
+              Ubicacion
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content color="medium">
+            <ion-list>
+              <ion-item>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-text>
+                  <h5>{{sitio.direccion}}</h5>
+                </ion-text>
+                
+              </ion-item>
+            </ion-list>
+            <div id="mapa" class="map"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+    <!-- !SECTION -  -->
+
+    <ion-row>
+      <ion-col size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header color="tertiary">           
+            
+            <ion-card-subtitle> 
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              Contacto
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content color="medium">
+            <ion-item (click)="onClick()">
+              <ion-icon name="globe-outline" slot="start"></ion-icon>
+              <ion-label>{{sitio.website}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+              <ion-label>{{sitio.whatsapp}}</ion-label>
+            </ion-item>            
+            <ion-item *ngFor="let telefono of sitio.telefonos">
+              <ion-icon name="call-outline" slot="start"></ion-icon>
+              <ion-label>{{telefono}}</ion-label>
+            </ion-item>           
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size-md="6" size-sm="12" size-xs="12">
+        <ion-card>
+          <ion-card-header color="secondary">           
+            
+            <ion-card-subtitle> 
+              <ion-icon name="location-outline"></ion-icon>
+              Ubicacion
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content color="medium">
+            <div id="mapa" class="map">Aqui va el mapa</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 
