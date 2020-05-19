@@ -46,6 +46,10 @@ export class DetalleSitioComponent implements OnInit {
       zoom: 16 // starting zoom
     });
 
+    this.map.on('load', () => {
+      this.map.resize();
+    });
+
     let marker = new mapboxgl.Marker()
       .setLngLat([this.sitio.longitud, this.sitio.latitud])
       .addTo(this.map);
@@ -54,7 +58,8 @@ export class DetalleSitioComponent implements OnInit {
   async verImagen(imagen) {
     const modal = await this.modalController.create({
       component: ImageModalComponent,
-      componentProps: {imagen}
+      componentProps: {imagen},
+      cssClass: 'modal-fullscreen'
     });
 
     modal.present();

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-image-modal',
@@ -8,13 +8,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class ImageModalComponent implements OnInit {
 
-  @Input() imagen: any;
-  @ViewChild('slider', {static: true}) slider: ElementRef;
+  @Input() imagen: any;  
+  @ViewChild('slider', {static: false}) slides: IonSlides;
 
   sliderOpts = {
     zoom: {
       maxRatio: 3
-    }
+    },
+    passiveListeners: false
   };
 
   constructor(private modalController: ModalController) { }
@@ -23,14 +24,18 @@ export class ImageModalComponent implements OnInit {
     console.log(this.imagen);
   }
 
-  zoom(zoomIn: boolean) {
-    let zoom = this.slider.nativeElement.zoom;
-    if(zoomIn) {
-      zoom.in();
-    } else {
-      zoom.out();
-    }
-  }
+  ionViewWillEnter() {
+    this.slides.lockSwipes(true);
+   }
+
+  // zoom(zoomIn: boolean) {
+  //   let zoom = this.slider.nativeElement.zoom;
+  //   if(zoomIn) {
+  //     zoom.in();
+  //   } else {
+  //     zoom.out();
+  //   }
+  // }
 
   regresar() {
     this.modalController.dismiss();
