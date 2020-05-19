@@ -19,7 +19,8 @@ export class SitioCardComponent implements OnInit {
   async verDetalleSitio(sitio: Sitio) {
     const modal = await this.modalController.create({
       component: DetalleSitioComponent,
-      componentProps: {sitio}
+      componentProps: {sitio},
+      cssClass: 'modal-fullscreen'
     });
 
     modal.present();

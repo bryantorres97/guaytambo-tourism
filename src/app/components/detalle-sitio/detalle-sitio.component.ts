@@ -6,6 +6,7 @@ import mapboxgl from 'mapbox-gl';
 import { SitioService } from 'src/app/services/sitio.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -17,10 +18,10 @@ export class DetalleSitioComponent implements OnInit {
   @Input() sitio: Sitio;
   map: mapboxgl.Map;
   mapboxToken = environment.mapboxToken;
-  
-  constructor(private modalController: ModalController, 
-    private geolocation: Geolocation, 
-    private theme: ThemeService, 
+
+  constructor(private modalController: ModalController,
+    private geolocation: Geolocation,
+    private theme: ThemeService,
     private sitioService: SitioService) { }
 
   ngOnInit() {
@@ -43,11 +44,20 @@ export class DetalleSitioComponent implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
       center: [this.sitio.longitud, this.sitio.latitud], // starting position [lng, lat]
       zoom: 16 // starting zoom
-      });
+    });
 
-      let marker = new mapboxgl.Marker()
-.setLngLat([this.sitio.longitud, this.sitio.latitud])
-.addTo(this.map);
+    let marker = new mapboxgl.Marker()
+      .setLngLat([this.sitio.longitud, this.sitio.latitud])
+      .addTo(this.map);
+  }
+
+  async verImagen(imagen) {
+    const modal = await this.modalController.create({
+      component: ImageModalComponent,
+      componentProps: {imagen}
+    });
+
+    modal.present();
   }
 
 

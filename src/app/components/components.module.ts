@@ -9,6 +9,7 @@ import { SitioCardComponent } from './sitio-card/sitio-card.component';
 import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
+import { ImageModalComponent } from './image-modal/image-modal.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
     SitioCardComponent,
     SitiosListaComponent,
     AvatarSelectorComponent,
-    DetalleSitioComponent
+    DetalleSitioComponent,
+    ImageModalComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
 
   entryComponents: [
     DetalleSitioComponent,
-    SitioCardComponent
+    SitioCardComponent,
+    ImageModalComponent
   ]
 })
 export class ComponentsModule { }
