@@ -58,10 +58,18 @@
     margin-top: -75px;
 }
 
-ion-content { --background: transparent;}
+ion-content { --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5));}
 
 ion-badge { --background: #00C2A8;}
 
+ion-card {
+    --background: rgba(0, 0, 0, 0.7);
+}
+
+ion-item {
+    --background: rgba(0, 0, 0, 0.5);
+    --color: #fafafa;
+}
 
 .map {
     width: 100%;
@@ -70,5 +78,5 @@ ion-badge { --background: #00C2A8;}
 
 .image-container {
     background-size: cover;
-    min-height: 200px;
+    min-height: 100px;
 }

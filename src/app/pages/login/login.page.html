@@ -20,21 +20,12 @@
                             name="email" 
                             [(ngModel)]="loginUser.email"
                             minlength="5"
-                            [class.is-invalid] ="email.invalid && email.touched"
+                            [class.is-invalid] ="(email.invalid && email.touched)"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                             required
                             #email="ngModel"></ion-input>
               </ion-item>
-              <ion-item class="error" *ngIf="email.invalid && email.touched && email.value.length == 0 ">
-                <ion-label class="errorMessage">
-                  <small> Error vacio</small>                  
-                </ion-label>
-              </ion-item>
-              <ion-item class="error" *ngIf="email.invalid && email.touched && email.invalid && email.value.length > 0" >
-                <ion-label class="errorMessage">
-                  <small> Error no vale</small>                  
-                </ion-label>
-              </ion-item>
+              
             </ion-col>
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>

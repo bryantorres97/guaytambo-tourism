@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonSlides } from '@ionic/angular';
+import { Foto } from 'src/app/interfaces/foto.interface';
 
 @Component({
   selector: 'app-image-modal',
@@ -8,7 +9,9 @@ import { ModalController, IonSlides } from '@ionic/angular';
 })
 export class ImageModalComponent implements OnInit {
 
-  @Input() imagen: any;  
+  @Input() imagen: Foto;
+  @Input() sitioId: string;
+
   @ViewChild('slider', {static: false}) slides: IonSlides;
 
   sliderOpts = {

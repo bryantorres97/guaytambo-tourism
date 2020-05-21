@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { SitioService } from 'src/app/services/sitio.service';
 import { Sitio } from 'src/app/interfaces/sitio.interface';
 import { from } from 'rxjs';
+import { DetalleSitioComponent } from 'src/app/components/detalle-sitio/detalle-sitio.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -17,7 +19,7 @@ export class Tab3Page {
   sitios: Sitio[];
   map: mapboxgl.Map;
 
-  constructor(private geolocation: Geolocation, private sitioService: SitioService) { }
+  constructor(private geolocation: Geolocation, private modalController: ModalController,private sitioService: SitioService) { }
 
   ionViewDidEnter() { this.cargarDatos(); }
 
@@ -119,11 +121,18 @@ export class Tab3Page {
       el.className = 'marker';
       el.style.backgroundImage = `url(assets/markers/${sitio.categoria.marcador})`;
       el.style.backgroundSize = 'cover';
-      el.style.width = '50px';
-      el.style.height = '50px';
+      el.style.width = '35px';
+      el.style.height = '35px';
       el.style.borderRadius = '50%';
-      el.addEventListener('click', function () {
-        window.alert('Hola');
+      el.addEventListener('click',  async () => {
+      console.log(sitio);
+      const modal = await this.modalController.create({
+        component: DetalleSitioComponent,
+        componentProps: {sitio},
+        cssClass: 'modal-fullscreen'
+      });
+  
+      modal.present();
       });
 
       // create the popup

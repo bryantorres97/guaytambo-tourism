@@ -19,7 +19,9 @@
   <ion-slides [options]="sliderOpts" #slider>
     <ion-slide>
       <div class="swiper-zoom-container">
-        <img src="assets/img/cover.jpg" alt="">
+        <img [src]="( imagen.archivo | imagen: 'sitio'
+        : 'images'
+        : sitioId )" alt="">
 
       </div>
     </ion-slide>

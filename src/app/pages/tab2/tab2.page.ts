@@ -5,6 +5,8 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { SitioService } from 'src/app/services/sitio.service';
 import { Sitio } from 'src/app/interfaces/sitio.interface';
 import { from } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { DetalleSitioComponent } from 'src/app/components/detalle-sitio/detalle-sitio.component';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class Tab2Page implements OnInit {
   map: Map;
   sitios: Sitio[];
 
-  constructor(private geolocation: Geolocation, private theme: ThemeService, private sitioService: SitioService) { }
+  constructor(private geolocation: Geolocation, private theme: ThemeService, private modalController: ModalController, private sitioService: SitioService) { }
 
   ngOnInit(): void {
   }
@@ -79,7 +81,7 @@ export class Tab2Page implements OnInit {
     let iconUrl = this.verificarImagen(`assets/markers/${marcador}`, `assets/markers/default.svg`);
     return icon({
       iconUrl,
-      iconSize: [38, 95], // size of the icon
+      iconSize: [35, 35], // size of the icon
     });
   }
 
@@ -95,7 +97,9 @@ export class Tab2Page implements OnInit {
     from(this.sitios).subscribe((sitio: Sitio) => {
       const marcador = this.crearIcono(sitio.categoria.marcador || 'default.svg');
       marker([sitio.latitud, sitio.longitud], { icon: marcador }).addTo(this.map)
-      .bindPopup('hola');
+      .bindPopup('hola').on('click', () => {
+        this.verDetalleSitio(sitio)
+      });
     })
   }
 
@@ -108,6 +112,16 @@ export class Tab2Page implements OnInit {
     } else {
       return urlOriginal;
     }
+  }
+
+  async verDetalleSitio(sitio: Sitio) {
+    const modal = await this.modalController.create({
+      component: DetalleSitioComponent,
+      componentProps: {sitio},
+      cssClass: 'modal-fullscreen'
+    });
+
+    modal.present();
   }
 
 

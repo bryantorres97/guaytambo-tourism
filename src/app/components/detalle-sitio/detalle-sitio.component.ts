@@ -55,10 +55,10 @@ export class DetalleSitioComponent implements OnInit {
       .addTo(this.map);
   }
 
-  async verImagen(imagen) {
+  async verImagen(imagen, sitioId) {
     const modal = await this.modalController.create({
       component: ImageModalComponent,
-      componentProps: {imagen},
+      componentProps: {imagen, sitioId},
       cssClass: 'modal-fullscreen'
     });
 
