@@ -8,7 +8,7 @@
 
 <ion-content>
   <div class="header">
-    <h2>Bryan Torres</h2>
+    <h2>{{usuario.nickname}}</h2>
 
     <div class="space-between">
       <div class="followings">
@@ -26,7 +26,7 @@
   <div class="flex">
     <div class="border-blue">
       <div class="border-white">
-        <div class="img-box">
+        <div class="img-box" [style]=" usuario.avatar | avatar">
           <!-- <img src="assets/img/167030.jpg" alt="">     -->
         </div>    
       </div>

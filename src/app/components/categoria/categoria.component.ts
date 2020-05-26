@@ -20,7 +20,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   verSitios( id: string) {
-    this.router.navigate(['/tabs/sitios', id]);
+    this.router.navigate(['main/tabs/sitios', id]);
   }
 
 }

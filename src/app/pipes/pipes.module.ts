@@ -4,12 +4,13 @@ import { DomSanatizerPipe } from './dom-sanatizer.pipe';
 import { ImagenPipe } from './imagen.pipe';
 import { ImagenPortadaPipe } from './imagen-portada.pipe';
 import { ImagenPerfilPipe } from './imagen-perfil.pipe';
+import { AvatarPipe } from './avatar.pipe';
 
 
 
 
 @NgModule({
-  declarations: [DomSanatizerPipe, ImagenPipe, ImagenPortadaPipe, ImagenPerfilPipe],
+  declarations: [DomSanatizerPipe, ImagenPipe, ImagenPortadaPipe, ImagenPerfilPipe, AvatarPipe],
   imports: [
     CommonModule
   ],
@@ -17,7 +18,8 @@ import { ImagenPerfilPipe } from './imagen-perfil.pipe';
     DomSanatizerPipe,
     ImagenPipe,
     ImagenPerfilPipe,
-    ImagenPortadaPipe
+    ImagenPortadaPipe,
+    AvatarPipe
   ]
 })
 export class PipesModule { }

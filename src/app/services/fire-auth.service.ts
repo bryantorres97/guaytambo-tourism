@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 // import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook/ngx";
 // import { Usuario } from "../interfaces/user.interface";
 import { auth } from 'firebase/app';
+import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,11 @@ export class FireAuthService {
     async loginMail(username: string, password: string) {
       try {
         const res = await this.AFauth.auth.signInWithEmailAndPassword(username, password);
-        console.log(res);
+        // console.log(res);
+        return res;
       } catch (err) {
         console.dir(err);
+        return err;
       }
     }
   
@@ -56,12 +59,12 @@ export class FireAuthService {
     //   );
     // }
   
-    async registerUser(username: string, password: string) {
+    async registerUser(usuario: Usuario) {
       try {
-        const res = await this.AFauth.auth.createUserWithEmailAndPassword(username, password);
-        console.log(res);
-      } catch (err) {
-        console.dir(err);
+        const res = await this.AFauth.auth.createUserWithEmailAndPassword(usuario.email, usuario.password);        
+        return res;
+      } catch (err) {        
+        return err;
       }
     }
 }

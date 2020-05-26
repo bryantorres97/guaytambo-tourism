@@ -4,5 +4,6 @@ export interface Usuario {
     avatar?: string,
     tipo: string,
     favoritos?: string[],
-    estaActivo?: boolean
+    estaActivo?: boolean,
+    password?: string
 }

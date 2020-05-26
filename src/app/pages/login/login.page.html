@@ -14,7 +14,7 @@
           <ion-row>
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>
-                <ion-icon slot="start" name="mail" [class.icon-invalid] ="email.invalid && email.touched"></ion-icon>
+                <ion-icon slot="start" name="mail-outline" [class.icon-invalid] ="email.invalid && email.touched"></ion-icon>
                 <ion-input  type="email" 
                             placeholder="Email" 
                             name="email" 
@@ -29,12 +29,11 @@
             </ion-col>
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>
-                <ion-icon slot="start" name="lock-closed" [class.icon-invalid] ="password.invalid && password.touched"></ion-icon>
+                <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="password.invalid && password.touched"></ion-icon>
                 <ion-input  type="password" 
                             placeholder="Password" 
                             name="password" 
-                            [(ngModel)]="loginUser.password"
-                            minlength="5"
+                            [(ngModel)]="loginUser.password"                            
                             [class.is-invalid] ="password.invalid && password.touched" 
                             required
                             #password="ngModel"></ion-input>
@@ -44,7 +43,7 @@
 
           <ion-row>
             <ion-col size="12">
-              <ion-label class="forget-password">¿Olvidaste tu contraseña?</ion-label>
+              <!-- <ion-label class="forget-password">¿Olvidaste tu contraseña?</ion-label> -->
             </ion-col>
           </ion-row>
 
@@ -99,50 +98,91 @@
     <ion-slide>
       <ion-grid fixed>
 
-        <!-- TODO Insertar el avatar selector-->
+        
         <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
         <form (ngSubmit)="registroMail(fRegistro)" #fRegistro="ngForm">
           <ion-row>
             
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>
-                <ion-icon slot="start" name="mail"></ion-icon>
-                <ion-input name="email" type="text" placeholder="Correo" [(ngModel)]="registerUser.email" required></ion-input>
+                <ion-icon slot="start" name="mail-outline" [class.icon-invalid] ="(emailRegistro.invalid && emailRegistro.touched)"></ion-icon>
+                <ion-input  name="email" 
+                            type="email" 
+                            placeholder="Correo" 
+                            [(ngModel)]="registerUser.email" 
+                            minlength="5"
+                            [class.is-invalid] ="(emailRegistro.invalid && emailRegistro.touched)"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                            required
+                            #emailRegistro="ngModel"
+                            ></ion-input>
               </ion-item>
             </ion-col>
 
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>
-                <ion-icon slot="start" name="person"></ion-icon>
-                <ion-input name="usuario" type="text" placeholder="Usuario" [(ngModel)]="registerUser.nick" required></ion-input>
+                <ion-icon slot="start" name="person-outline" [class.icon-invalid] ="(usuarioRegistro.invalid && usuarioRegistro.touched)"></ion-icon>
+                <ion-input  name="usuario" 
+                            type="text" 
+                            placeholder="Usuario" 
+                            [(ngModel)]="registerUser.nick"
+                            minlength="3"
+                            maxlength="40"
+                            [class.is-invalid] ="(usuarioRegistro.invalid && usuarioRegistro.touched)"
+                            pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$" 
+                            required
+                            #usuarioRegistro="ngModel"
+                            ></ion-input>
               </ion-item>
             </ion-col>
             
             <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
               <ion-item transparent>
-                <ion-icon slot="start" name="lock-closed"></ion-icon>
-                <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="registerUser.password" required></ion-input>
+                <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="(passwordRegistro.invalid && passwordRegistro.touched)" ></ion-icon>
+                <ion-input  name="password" 
+                            type="password" 
+                            placeholder="Password" 
+                            [(ngModel)]="registerUser.password"
+                            minlength="6"
+                            maxlength="20"
+                            [class.is-invalid] ="(passwordRegistro.invalid && passwordRegistro.touched)" 
+                            required
+                            #passwordRegistro="ngModel"
+                            ></ion-input>
               </ion-item>
             </ion-col>            
 
             
             <ion-col>
               <ion-item transparent>
-                <ion-icon slot="start" name="lock-closed"></ion-icon>
-                <ion-input name="verifyPassword" type="password" placeholder="Verificar Password" [(ngModel)]="registerUser.verifyPassword" required></ion-input>
+                <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="(checkPassword.invalid && checkPassword.touched)" ></ion-icon>
+                <ion-input  name="verifyPassword" 
+                            type="password" 
+                            placeholder="Verificar Password" 
+                            [(ngModel)]="registerUser.verifyPassword"
+                            minlength="6"
+                            maxlength="20"
+                            [class.is-invalid] ="(checkPassword.invalid && checkPassword.touched)" 
+                            required
+                            #checkPassword="ngModel"
+                            ></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <ion-col>
-              <ion-button type="submit" color="tertiary" shape="round">
+            <ion-col size="2">             
+            </ion-col>
+            <ion-col size="8">
+              <ion-button type="submit" color="tertiary" expand="block" fill="solid">
                 Crear usuario
               </ion-button>
             </ion-col>
+            <ion-col size="2">             
+            </ion-col>
             <ion-col>
               <ion-button (click)="mostrarLogin()" fill="clear" shape="round">
-                Click me
+                Iniciar sesion
               </ion-button>
             </ion-col>
           </ion-row>
