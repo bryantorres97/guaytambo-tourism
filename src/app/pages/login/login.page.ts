@@ -40,7 +40,10 @@ export class LoginPage implements OnInit {
                 private loadingController: LoadingController,
                 private navController: NavController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.auth.verificarSesion();
+    const user = await this.usuarioService.getUsuarioLocal();
+    console.log(user);
   }
 
   ionViewWillEnter() {
@@ -53,15 +56,15 @@ export class LoginPage implements OnInit {
     } else {
       this.auth.loginMail(this.loginUser.email, this.loginUser.password).then((resp) => {
         // console.log(resp);
-        if(resp['code'] === 'auth/wrong-password') {
+        if(resp['code'] === 'auth/wrong-password' || resp['code'] === 'auth/user-not-found') {
           this.uiService.alertaInformativa('Usuario y/o contraseña incorrectos');
           return;
         }
 
         if(resp['operationType'] === 'signIn') {
-          console.log(resp['user'].email);
+          // console.log(resp['user'].email);
           this.usuarioService.getUsuarioByEmail(resp['user'].email).subscribe((resp) => {
-            // console.log(resp);
+            console.log(resp);
             this.usuarioService.setUsuario(resp['user']);
             this.navController.navigateRoot('main/tabs/tab1', {animated: true});           
           });
@@ -99,9 +102,10 @@ export class LoginPage implements OnInit {
         if(resp['code'] === 'auth/email-already-in-use') {
           this.uiService.alertaInformativa(resp['message']);
         } else if(resp['operationType'] === 'signIn') {
-          this.lauth.registerUser(this.usuario).subscribe((resp)=>{
+          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
             if(resp['ok']){
               this.usuarioService.usuario = resp['user'];
+              this.usuarioService.setUsuario(this.usuarioService.usuario);
               this.navController.navigateRoot('main/tabs/tab1', {animated: true});
             }
           }, (err) => {

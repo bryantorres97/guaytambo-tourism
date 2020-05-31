@@ -17,10 +17,12 @@ export class FireAuthService {
 		private platform: Platform,
     private http: HttpClient) { }
     
-    verificarSesion() {
+    async verificarSesion() {
       this.platform.ready().then(() => {
         this.AFauth.auth.onAuthStateChanged(user => {
+          // console.log(user);
           if (user) {
+            console.log(user);
             console.log("Sesion abierta");
           }
         });
