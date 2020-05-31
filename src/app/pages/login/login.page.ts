@@ -50,14 +50,20 @@ export class LoginPage implements OnInit {
     this.slides.lockSwipes(true);
   }
 
-  loginMail(fLogin: NgForm) {    
+  async loginMail(fLogin: NgForm) {    
     if (fLogin.invalid) {
       this.comprobarCamposRequeridosLogin(fLogin);
     } else {
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+        translucent: true
+      });
+      loading.present();
       this.auth.loginMail(this.loginUser.email, this.loginUser.password).then((resp) => {
         // console.log(resp);
         if(resp['code'] === 'auth/wrong-password' || resp['code'] === 'auth/user-not-found') {
           this.uiService.alertaInformativa('Usuario y/o contraseña incorrectos');
+          loading.dismiss();
           return;
         }
 
@@ -70,6 +76,7 @@ export class LoginPage implements OnInit {
           });
         }
       });
+      loading.dismiss();
     }
   }
 

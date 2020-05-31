@@ -2,11 +2,12 @@
 
 import { Categoria } from './categoria.interface';
 import { Foto } from './foto.interface';
+import { Comentario } from './comentario.interface';
 
 export interface Sitio {
     telefonos?:      string[];
     calificaciones?: any[];
-    comentarios?:    any[];
+    comentarios?:    Comentario[];
     fotos?:          Foto[];
     estaActivo?:     boolean;
     _id?:            string;
