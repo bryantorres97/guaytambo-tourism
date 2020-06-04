@@ -4,7 +4,7 @@ import { FireAuthService } from 'src/app/services/fire-auth.service';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { LocalAuthService } from 'src/app/services/local-auth.service';
-import { UiServiceService } from 'src/app/services/ui-service.service';
+import { UiService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
 
   constructor(  private auth: FireAuthService, 
                 private lauth: LocalAuthService, 
-                private uiService: UiServiceService,
+                private uiService: UiService,
                 private usuarioService: UsuarioService, 
                 private loadingController: LoadingController,
                 private navController: NavController) { }

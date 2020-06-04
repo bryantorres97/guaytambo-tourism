@@ -6,5 +6,6 @@ export interface Comentario {
     usuario?: Usuario,
     usuarioId?: string,
     created?: Date,
-    estaActivo?: boolean
+    estaActivo?: boolean,
+    sitioId?: string 
 }

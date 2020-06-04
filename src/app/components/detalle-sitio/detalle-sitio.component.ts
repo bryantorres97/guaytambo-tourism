@@ -7,6 +7,7 @@ import { SitioService } from 'src/app/services/sitio.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { ImageModalComponent } from '../image-modal/image-modal.component';
+import { UiService } from 'src/app/services/ui-service.service';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -21,7 +22,7 @@ export class DetalleSitioComponent implements OnInit {
 
   constructor(private modalController: ModalController,
     private geolocation: Geolocation,
-    private theme: ThemeService,
+    private uiService: UiService,    
     private sitioService: SitioService) { }
 
   ngOnInit() {
@@ -63,6 +64,10 @@ export class DetalleSitioComponent implements OnInit {
     });
 
     modal.present();
+  }
+
+  comentar() {
+    this.uiService.mostrarFormaComentario(this.sitio._id);
   }
 
 
