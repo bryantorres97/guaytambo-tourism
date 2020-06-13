@@ -13,7 +13,7 @@ export class ComentarioService {
   constructor(private http: HttpClient) { }
 
   crearComentario(comentario: Comentario) {
-    console.log(comentario);
+    // console.log(comentario);
     return this.http.post(`${URL}/crear/`, comentario);
   }
 }

@@ -8,6 +8,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { ImageModalComponent } from '../image-modal/image-modal.component';
 import { UiService } from 'src/app/services/ui-service.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -19,11 +20,13 @@ export class DetalleSitioComponent implements OnInit {
   @Input() sitio: Sitio;
   map: mapboxgl.Map;
   mapboxToken = environment.mapboxToken;
+  iconoFavorito = 'star-outline';
 
   constructor(private modalController: ModalController,
     private geolocation: Geolocation,
     private uiService: UiService,    
-    private sitioService: SitioService) { }
+    private sitioService: SitioService,
+    private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     console.log(this.sitio);
@@ -68,6 +71,18 @@ export class DetalleSitioComponent implements OnInit {
 
   comentar() {
     this.uiService.mostrarFormaComentario(this.sitio._id);
+  }
+
+  favorito() {
+    // console.log('add');
+    //console.log(this.usuarioService.usuario);
+    const userId = this.usuarioService.usuario._id;
+    console.log( userId); 
+    this.usuarioService.addFavorito(userId, this.sitio._id).subscribe( resp => {
+      if( resp['ok']) {
+        this.usuarioService.addFavoritoLocal(this.sitio);
+      }
+      console.log(resp)} );
   }
 
 

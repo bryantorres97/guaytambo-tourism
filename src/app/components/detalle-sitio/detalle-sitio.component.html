@@ -193,6 +193,13 @@
       </ion-button>
     </ion-buttons>
 
+    <ion-buttons slot="end">
+      <ion-button (click)="favorito()">
+        <ion-icon slot="end" name={{iconoFavorito}} color="dark"></ion-icon>
+        <ion-label>Favorito</ion-label>
+      </ion-button>
+    </ion-buttons>
+
     <!-- <ion-buttons slot="end">
       <ion-button (click)="comentar()">
         <ion-icon slot="end" name={{iconoFavorito}} color="dark"></ion-icon>
