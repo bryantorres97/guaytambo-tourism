@@ -13,7 +13,7 @@
 
 <ion-content [style]=" ( sitio.imagenPortada | imagen: 'sitio'
 : 'cover'
-: sitio._id ) | imagenPortada"> 
+: sitio._id ) | imagenPortada"  #content> 
   <!-- <div style="background-image: url(assets/img/cover.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; position: absolute; z-index: -1;"></div>  -->
   <div class="header" [style]=" ( sitio.imagenPortada | imagen: 'sitio'
   : 'cover'
@@ -179,7 +179,12 @@
     </ion-grid>    
   </ion-col>
 </ion-row>
+<ion-row>
+  <ion-col size="12"></ion-col>
+</ion-row>
   </ion-grid>
+
+  
 </ion-content>
 
 
@@ -195,7 +200,7 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="favorito()">
-        <ion-icon slot="end" name={{iconoFavorito}} color="dark"></ion-icon>
+        <ion-icon slot="end" name={{iconoFavorito}} color="danger"></ion-icon>
         <ion-label>Favorito</ion-label>
       </ion-button>
     </ion-buttons>

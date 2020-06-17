@@ -27,40 +27,7 @@ export class UiService {
   }
 
 
-  async mostrarFormaComentario(sitioId: string) {
-    const alert = await this.alertController.create({
-      
-      // cssClass: 'alerta-comentario',
-      header: 'Escribe tu comentario',
-      inputs: [
-        {
-          name: 'comentario',
-          type: 'textarea',
-          placeholder: 'Escribe tu comentario',
-                   
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Publicar',
-          handler: (alertData) => {
-            console.log('Confirm Ok');
-            console.log(alertData['comentario']);
-            this.publicarComentario(alertData['comentario'], sitioId);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
+  
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -72,15 +39,5 @@ export class UiService {
 
 
 
-  publicarComentario(texto: string, sitioId: string) {
-    const comentario: Comentario = {
-      sitioId,
-      texto,
-      usuario: this.usuarioService.usuario
-    }
-
-    this.comentarioService.crearComentario(comentario).subscribe( resp =>{
-      console.log(resp);
-    });
-  }
+  
 }

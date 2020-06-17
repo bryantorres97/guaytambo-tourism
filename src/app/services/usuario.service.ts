@@ -63,9 +63,14 @@ export class UsuarioService {
     return this.http.put(`${URL}/nuevofavorito`, [id, sitioId]);
   }
 
+  public removeFavorito(id: string, sitioId: string) {
+    return this.http.put(`${URL}/borrarfavorito`, [id, sitioId]);
+  }
+
   async cargarFavoritos() {
     this.getUsuarioLocal();
     const sitiosFavoritos = this.usuario.favoritos;
+    console.log( sitiosFavoritos);
     this.favoritos = sitiosFavoritos || [];
     return this.favoritos;
     // const peliculas = await this.storage.get('peliculas');
@@ -75,10 +80,34 @@ export class UsuarioService {
 
   async existeSitio(id: string) {
     await this.cargarFavoritos();
+    console.log( this.favoritos);
     const existe = this.favoritos.find( sitio => sitio._id === id);
     return existe ? true : false;
   }
 
+  guardarSitioFavorito(sitio: Sitio): boolean {
+    let existe = false;
+    let guardada = false;
+    
+    for (const favorito of this.usuario.favoritos) {
+      if (sitio._id === favorito._id) {
+        existe = true;
+        console.log('Existe: ',existe);
+        break;
+      }
+    }
+
+    if(!existe) {
+      this.usuario.favoritos.unshift(sitio);
+      guardada = true;
+    } else {
+      this.usuario.favoritos = this.usuario.favoritos.filter( site => site._id !== sitio._id);      
+    }
+    console.log(this.usuario.favoritos);
+    console.log('Guardada',guardada);
+    this.storageService.setUser(this.usuario);
+    return guardada;
+  }
   // async existePelicula(id) {
   //   id = Number(id);
   //   await this.cargarFavoritos();
