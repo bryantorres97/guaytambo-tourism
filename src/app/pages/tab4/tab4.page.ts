@@ -18,6 +18,11 @@ export class Tab4Page {
     this.usuario = this.usuarioService.usuario;    
   }
 
+  ionViewDidEnter(){
+    this.usuario = this.usuarioService.usuario;    
+    console.log('DId enter')
+  }
+
   // async ionViewDidEnter() {
   //   console.log(await this.usuarioService.usuario);
     

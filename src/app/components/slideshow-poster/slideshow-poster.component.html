@@ -1,0 +1,12 @@
+<ion-slides [options]="slideOpts">
+  <ion-slide *ngFor="let sitio of favoritos">
+    <ion-card (click)="verDetalleSitio(sitio)">
+      <img [src]="sitio.imagenPortada | imagen: 'sitio'
+      : 'cover'
+      : sitio._id" [alt]="sitio.nombreEs" class="poster">
+      <ion-card-content>
+        {{sitio.nombreEs}}
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+</ion-slides>

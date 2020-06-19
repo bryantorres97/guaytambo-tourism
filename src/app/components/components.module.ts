@@ -10,6 +10,7 @@ import { SitiosListaComponent } from './sitios-lista/sitios-lista.component';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
 import { ImageModalComponent } from './image-modal/image-modal.component';
+import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ImageModalComponent } from './image-modal/image-modal.component';
     SitiosListaComponent,
     AvatarSelectorComponent,
     DetalleSitioComponent,
-    ImageModalComponent
+    ImageModalComponent,
+    SlideshowPosterComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { ImageModalComponent } from './image-modal/image-modal.component';
   exports: [
     CategoriasComponent,
     SitiosListaComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    SlideshowPosterComponent
   ],
 
   entryComponents: [

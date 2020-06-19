@@ -9,6 +9,7 @@ import { UiService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Comentario } from 'src/app/interfaces/comentario.interface';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { Usuario } from 'src/app/interfaces/usuario.interface';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -22,25 +23,30 @@ export class DetalleSitioComponent implements OnInit {
   map: mapboxgl.Map;
   mapboxToken = environment.mapboxToken;
   iconoFavorito = 'heart-outline';
+  usuario: Usuario;
 
   constructor(private modalController: ModalController,
     private alertController: AlertController,
     private geolocation: Geolocation,
-    private uiService: UiService,        
+    private uiService: UiService,
     private usuarioService: UsuarioService,
     private comentarioService: ComentarioService) { }
 
   async ngOnInit() {
     //console.log(this.sitio);
     this.mapboxMap();
+    this.usuario = this.usuarioService.usuario;
     const existe = await this.usuarioService.existeSitio(this.sitio._id);
-    if ( existe) {
+    if (existe) {
       this.iconoFavorito = 'heart';
     }
   }
 
   regresar() {
-    this.modalController.dismiss();
+    this.modalController.dismiss({
+      sitio: this.sitio
+    }
+    );
   }
 
   onClick() {
@@ -68,7 +74,7 @@ export class DetalleSitioComponent implements OnInit {
   async verImagen(imagen, sitioId) {
     const modal = await this.modalController.create({
       component: ImageModalComponent,
-      componentProps: {imagen, sitioId},
+      componentProps: { imagen, sitioId },
       cssClass: 'modal-fullscreen'
     });
 
@@ -82,18 +88,18 @@ export class DetalleSitioComponent implements OnInit {
   favorito() {
     const guardada = this.usuarioService.guardarSitioFavorito(this.sitio);
     let mensaje = '';
-    if( guardada ) {
+    if (guardada) {
       mensaje = 'Se ha agregado a tu lista de favoritos'
       this.iconoFavorito = 'heart';
-      this.usuarioService.addFavorito(this.usuarioService.usuario._id, this.sitio._id).subscribe( resp => {
-        console.log(resp);        
+      this.usuarioService.addFavorito(this.usuarioService.usuario._id, this.sitio._id).subscribe(resp => {
+        console.log(resp);
       });
 
     } else {
       mensaje = 'Se ha eliminado de tu lista de favoritos';
       this.iconoFavorito = 'heart-outline';
-      this.usuarioService.removeFavorito(this.usuarioService.usuario._id, this.sitio._id).subscribe( resp => {
-        console.log(resp);        
+      this.usuarioService.removeFavorito(this.usuarioService.usuario._id, this.sitio._id).subscribe(resp => {
+        console.log(resp);
       });
     }
 
@@ -101,7 +107,7 @@ export class DetalleSitioComponent implements OnInit {
     // // console.log('add');
     // //console.log(this.usuarioService.usuario);
     // const userId = this.usuarioService.usuario._id;
-    
+
     // this.usuarioService.addFavorito(userId, this.sitio._id).subscribe( resp => {
     //   if( resp['ok']) {
     //     this.usuarioService.addFavoritoLocal(this.sitio);
@@ -111,7 +117,7 @@ export class DetalleSitioComponent implements OnInit {
 
   async mostrarFormaComentario(sitioId: string) {
     const alert = await this.alertController.create({
-      
+
       // cssClass: 'alerta-comentario',
       header: 'Escribe tu comentario',
       inputs: [
@@ -119,7 +125,7 @@ export class DetalleSitioComponent implements OnInit {
           name: 'comentario',
           type: 'textarea',
           placeholder: 'Escribe tu comentario',
-                   
+
         }
       ],
       buttons: [
@@ -151,12 +157,16 @@ export class DetalleSitioComponent implements OnInit {
       usuario: this.usuarioService.usuario
     }
 
-    this.comentarioService.crearComentario(comentario).subscribe( resp =>{
+    this.comentarioService.crearComentario(comentario).subscribe(resp => {
       console.log(resp);
       this.sitio = resp['sitio'];
-      
-      setTimeout(() =>this.content.scrollToBottom(300), 500 );
+
+      setTimeout(() => this.content.scrollToBottom(300), 500);
     });
+  }
+
+  click() {
+    console.log('click')
   }
 
 
