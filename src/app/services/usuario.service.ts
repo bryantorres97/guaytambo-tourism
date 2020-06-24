@@ -103,8 +103,8 @@ export class UsuarioService {
     } else {
       this.usuario.favoritos = this.usuario.favoritos.filter( site => site._id !== sitio._id);      
     }
-    console.log(this.usuario.favoritos);
-    console.log('Guardada',guardada);
+    //console.log(this.usuario.favoritos);
+    // console.log('Guardada',guardada);
     this.storageService.setUser(this.usuario);
     return guardada;
   }

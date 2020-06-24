@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 // SECTION - Ionic Modulos
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 // Angular Fire
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +49,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     StatusBar,
     SplashScreen,
     Geolocation,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

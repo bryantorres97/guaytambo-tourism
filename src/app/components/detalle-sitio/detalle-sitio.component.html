@@ -76,7 +76,7 @@
           </ion-card-header>
         
           <ion-card-content color="medium">
-            <ion-item (click)="onClick()">
+            <ion-item (click)="abrirURL(sitio.website)">
               <ion-icon name="globe-outline" slot="start" color="medium"></ion-icon>
               <ion-label>{{sitio.website}}</ion-label>
             </ion-item>
@@ -204,9 +204,14 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
+      <ion-button (click)="agregarCalificacion(false)">        
+        <ion-icon slot="icon-only" name="thumbs-down-outline" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button (click)="agregarCalificacion(true)">        
+        <ion-icon slot="icon-only" name="thumbs-up-outline" color="primary"></ion-icon>
+      </ion-button>
       <ion-button (click)="favorito()">
-        <ion-icon slot="end" name={{iconoFavorito}} color="danger"></ion-icon>
-        <ion-label>Favorito</ion-label>
+        <ion-icon slot="icon-only" name={{iconoFavorito}} color="danger"></ion-icon>        
       </ion-button>
     </ion-buttons>
 

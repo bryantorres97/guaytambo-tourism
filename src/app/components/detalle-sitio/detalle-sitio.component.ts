@@ -10,6 +10,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Comentario } from 'src/app/interfaces/comentario.interface';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Calificacion } from 'src/app/interfaces/calificacion.interface';
+import { SitioService } from 'src/app/services/sitio.service';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -28,12 +31,23 @@ export class DetalleSitioComponent implements OnInit {
   constructor(private modalController: ModalController,
     private alertController: AlertController,
     private geolocation: Geolocation,
+    private iab: InAppBrowser,
     private uiService: UiService,
     private usuarioService: UsuarioService,
-    private comentarioService: ComentarioService) { }
+    private comentarioService: ComentarioService,
+    private sitioService: SitioService) { 
+      
+    }
 
   async ngOnInit() {
     //console.log(this.sitio);
+    this.sitioService.getSitio(this.sitio._id).subscribe( resp => {
+      if(resp['ok']) {
+        const sitioCompleto: Sitio = resp['sitio'];
+        this.sitio.calificaciones = sitioCompleto.calificaciones;
+        this.sitio.comentarios = sitioCompleto.comentarios;
+      }
+    })
     this.mapboxMap();
     this.usuario = this.usuarioService.usuario;
     const existe = await this.usuarioService.existeSitio(this.sitio._id);
@@ -167,6 +181,26 @@ export class DetalleSitioComponent implements OnInit {
 
   click() {
     console.log('click')
+  }
+
+  abrirURL(url: string) {
+    // const browser = this.iab.create(url);
+    console.log(url)
+    this.iab.create('https://'+url, '_blank');
+  }
+
+  agregarCalificacion(like: boolean){
+    const calificacion: Calificacion = {
+      sitioId: this.sitio._id,
+      valor: like,
+      usuario: this.usuarioService.usuario,
+      usuarioId: this.usuarioService.usuario._id,
+      estaActivo: true
+    }
+
+    this.sitioService.agregarCalificacion(calificacion).subscribe(resp => {
+      console.log(resp);
+    })
   }
 
 
