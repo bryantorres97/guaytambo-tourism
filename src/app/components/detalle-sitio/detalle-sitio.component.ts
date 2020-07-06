@@ -26,6 +26,8 @@ export class DetalleSitioComponent implements OnInit {
   map: mapboxgl.Map;
   mapboxToken = environment.mapboxToken;
   iconoFavorito = 'heart-outline';
+  iconoLike = 'thumbs-up-outline';
+  iconoDislike = 'thumbs-down-outline';
   usuario: Usuario;
 
   constructor(private modalController: ModalController,
@@ -35,17 +37,29 @@ export class DetalleSitioComponent implements OnInit {
     private uiService: UiService,
     private usuarioService: UsuarioService,
     private comentarioService: ComentarioService,
-    private sitioService: SitioService) { 
-      
-    }
+    private sitioService: SitioService) {
+
+  }
 
   async ngOnInit() {
     //console.log(this.sitio);
-    this.sitioService.getSitio(this.sitio._id).subscribe( resp => {
-      if(resp['ok']) {
+    this.sitioService.getSitio(this.sitio._id).subscribe(resp => {
+      if (resp['ok']) {
+        console.log(resp);
         const sitioCompleto: Sitio = resp['sitio'];
         this.sitio.calificaciones = sitioCompleto.calificaciones;
         this.sitio.comentarios = sitioCompleto.comentarios;
+        // console.log(this.sitio);
+        for (const calificacion of sitioCompleto.calificaciones) {
+          if (calificacion.usuario._id === this.usuarioService.usuario._id) {
+            if (calificacion.valor) {
+              this.iconoLike = 'thumbs-up';
+            }else {
+              this.iconoDislike = 'thumbs-down';              
+            }
+            break;
+          }
+        }
       }
     })
     this.mapboxMap();
@@ -118,15 +132,6 @@ export class DetalleSitioComponent implements OnInit {
     }
 
     this.uiService.presentToast(mensaje);
-    // // console.log('add');
-    // //console.log(this.usuarioService.usuario);
-    // const userId = this.usuarioService.usuario._id;
-
-    // this.usuarioService.addFavorito(userId, this.sitio._id).subscribe( resp => {
-    //   if( resp['ok']) {
-    //     this.usuarioService.addFavoritoLocal(this.sitio);
-    //   }
-    //   console.log(resp)} );
   }
 
   async mostrarFormaComentario(sitioId: string) {
@@ -193,7 +198,7 @@ export class DetalleSitioComponent implements OnInit {
           text: 'Si',
           handler: () => {
             this.borrarComentario(comentarioId, sitioId);
-            
+
           }
         }
       ]
@@ -203,24 +208,21 @@ export class DetalleSitioComponent implements OnInit {
   }
 
   borrarComentario(comentarioId: string, sitioId: string) {
-    this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe( resp => {
+    this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe(resp => {
       if (resp['ok']) {
         this.sitio = resp['sitio'];
       }
     })
   }
 
-  click() {
-    console.log('click')
-  }
 
   abrirURL(url: string) {
     // const browser = this.iab.create(url);
     console.log(url)
-    this.iab.create('https://'+url, '_blank');
+    this.iab.create('https://' + url, '_blank');
   }
 
-  agregarCalificacion(like: boolean){
+  agregarCalificacion(like: boolean) {
     const calificacion: Calificacion = {
       sitioId: this.sitio._id,
       valor: like,
@@ -230,7 +232,13 @@ export class DetalleSitioComponent implements OnInit {
     }
 
     this.sitioService.agregarCalificacion(calificacion).subscribe(resp => {
-      console.log(resp);
+      if( like ) {
+        this.iconoLike = 'thumbs-up';
+        this.iconoDislike = 'thumbs-down-outline';
+      } else {
+        this.iconoLike = 'thumbs-up-outline';
+        this.iconoDislike = 'thumbs-down';
+      }
     })
   }
 

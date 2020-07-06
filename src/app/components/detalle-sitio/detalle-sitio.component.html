@@ -22,7 +22,7 @@
     <div class="space-between">
       <div class="followings">
         <ion-badge  mode="ios">
-          <div>{{sitio.calificaciones.length}} Me gusta</div>
+          <div>{{sitio.calificaciones | numeroLikes }} Me gusta</div>
         </ion-badge>
         <!-- <p>{{ 'profile.likes' | translate }}</p>    -->
       </div>
@@ -213,10 +213,10 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="agregarCalificacion(false)">        
-        <ion-icon slot="icon-only" name="thumbs-down-outline" color="gray"></ion-icon>
+        <ion-icon slot="icon-only" name={{iconoDislike}} color="gray"></ion-icon>
       </ion-button>
       <ion-button (click)="agregarCalificacion(true)">        
-        <ion-icon slot="icon-only" name="thumbs-up-outline" color="gray"></ion-icon>
+        <ion-icon slot="icon-only" name={{iconoLike}} color="gray"></ion-icon>
       </ion-button>
       <ion-button (click)="favorito()">
         <ion-icon slot="icon-only" name={{iconoFavorito}} color="danger"></ion-icon>        

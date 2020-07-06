@@ -6,12 +6,13 @@ import { ImagenPortadaPipe } from './imagen-portada.pipe';
 import { ImagenPerfilPipe } from './imagen-perfil.pipe';
 import { AvatarPipe } from './avatar.pipe';
 import { FechaPipe } from './fecha.pipe';
+import { NumeroLikesPipe } from './numero-likes.pipe';
 
 
 
 
 @NgModule({
-  declarations: [DomSanatizerPipe, ImagenPipe, ImagenPortadaPipe, ImagenPerfilPipe, AvatarPipe, FechaPipe],
+  declarations: [DomSanatizerPipe, ImagenPipe, ImagenPortadaPipe, ImagenPerfilPipe, AvatarPipe, FechaPipe, NumeroLikesPipe],
   imports: [
     CommonModule
   ],
@@ -21,7 +22,8 @@ import { FechaPipe } from './fecha.pipe';
     ImagenPerfilPipe,
     ImagenPortadaPipe,
     AvatarPipe,
-    FechaPipe
+    FechaPipe,
+    NumeroLikesPipe
   ]
 })
 export class PipesModule { }
