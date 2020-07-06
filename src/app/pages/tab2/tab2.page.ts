@@ -57,18 +57,12 @@ export class Tab2Page implements OnInit {
 
     this.map = new Map('mapId').setView([-1.2412194, -78.6269361], 16);
     let layer = tileLayer(tile, {
-      maxZoom: maxzoom
-      // useCache: true
-      // crossOrigin: true
+      maxZoom: maxzoom,
+      //useCache: true,
+      crossOrigin: true
     }).addTo(this.map);
 
-    marker([-1.2412194, -78.6269361]).addTo(this.map)
-      .bindPopup('Ionic 4 <br> Leaflet.');
-
-
-    // create custom icon
     this.crearMarcadoresSitios();
-
   }
 
 
@@ -81,7 +75,7 @@ export class Tab2Page implements OnInit {
     let iconUrl = this.verificarImagen(`assets/markers/${marcador}`, `assets/markers/default.svg`);
     return icon({
       iconUrl,
-      iconSize: [35, 35], // size of the icon
+      iconSize: [35, 35],
     });
   }
 
@@ -95,9 +89,9 @@ export class Tab2Page implements OnInit {
 
   private crearMarcadoresSitios() {
     from(this.sitios).subscribe((sitio: Sitio) => {
-      const marcador = this.crearIcono(sitio.categoria.marcador || 'default.svg');
+      const marcador = this.crearIcono(`${sitio.categoria.marcador}.svg` || 'default.svg');
       marker([sitio.latitud, sitio.longitud], { icon: marcador }).addTo(this.map)
-      .bindPopup('hola').on('click', () => {
+      .on('click', () => {
         this.verDetalleSitio(sitio)
       });
     })

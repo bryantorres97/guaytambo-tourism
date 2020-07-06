@@ -1,19 +1,10 @@
-
-  <ion-card 
-  [style]=" ( categoria.imagenFondo | imagen: 'categoria'
+<ion-card [style]=" ( categoria.imagenFondo | imagen: 'categoria'
                           : 'cover'
                           : categoria._id ) | domSanatizer: categoria.color1 
-                                                                  : categoria.color2" 
-          (click)="verSitios( categoria._id )">
-    
-          <ion-card-header>
-      <!-- <ion-card-subtitle> -->
-        <!-- {{'Awesome Subtitle' | domSanatizer:'Hola':'Adios'}} -->
-        <!-- Title
-      </ion-card-subtitle> -->
-      <ion-card-title>{{categoria.nombreEs}}</ion-card-title>
-    </ion-card-header>
-    <!-- <ion-card-content>
-      Awesome content
-    </ion-card-content> -->
-  </ion-card>
+                                                                  : categoria.color2"
+  (click)="verSitios( categoria._id )">
+
+  <ion-card-header>
+    <div class="card-title">{{categoria.nombreEs}}</div>
+  </ion-card-header>
+</ion-card>

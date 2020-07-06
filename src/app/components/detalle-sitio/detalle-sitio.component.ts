@@ -131,7 +131,6 @@ export class DetalleSitioComponent implements OnInit {
 
   async mostrarFormaComentario(sitioId: string) {
     const alert = await this.alertController.create({
-
       // cssClass: 'alerta-comentario',
       header: 'Escribe tu comentario',
       inputs: [
@@ -153,8 +152,6 @@ export class DetalleSitioComponent implements OnInit {
         }, {
           text: 'Publicar',
           handler: (alertData) => {
-            console.log('Confirm Ok');
-            console.log(alertData['comentario']);
             this.publicarComentario(alertData['comentario'], sitioId);
           }
         }
@@ -177,6 +174,40 @@ export class DetalleSitioComponent implements OnInit {
 
       setTimeout(() => this.content.scrollToBottom(300), 500);
     });
+  }
+
+  async mostrarFormaBorrarComentario(comentarioId: string, sitioId: string, index: number) {
+    const alert = await this.alertController.create({
+      // cssClass: 'my-custom-class',
+      // header: '',
+      message: '¿Está seguro de eliminar el comentario?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          handler: () => {
+            this.borrarComentario(comentarioId, sitioId);
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  borrarComentario(comentarioId: string, sitioId: string) {
+    this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe( resp => {
+      if (resp['ok']) {
+        this.sitio = resp['sitio'];
+      }
+    })
   }
 
   click() {

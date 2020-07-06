@@ -12,8 +12,11 @@ export class ComentarioService {
 
   constructor(private http: HttpClient) { }
 
-  crearComentario(comentario: Comentario) {
-    // console.log(comentario);
+  crearComentario(comentario: Comentario) {    
     return this.http.post(`${URL}/crear/`, comentario);
+  }
+
+  borrarComentario(comentarioId: string, sitioId: string ) {    
+    return this.http.put(`${URL}/deshabilitar/`, [comentarioId, sitioId]);
   }
 }

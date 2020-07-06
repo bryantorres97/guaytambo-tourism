@@ -36,8 +36,8 @@ export class DomSanatizerPipe implements PipeTransform {
     
     const domImg = `--background: 
                     linear-gradient(to bottom right,
-                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.6),
-                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.6)),
+                                    rgba(${color1.r}, ${color1.g}, ${color1.b}, 0.4),
+                                    rgba(${color2.r}, ${color2.g}, ${color2.b}, 0.4)),
                     url('${img}') center center / cover no-repeat`;
     
 

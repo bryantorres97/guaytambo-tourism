@@ -15,28 +15,28 @@
 
   
 
-  <ion-footer>
+  <ion-footer class="ion-no-border">
     <ion-grid fixed>
       <ion-row>
         <ion-col center style="text-align: center;">
           <ion-badge color="success">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>1.5k Likes</div>
+            <div>{{sitio.calificaciones.length}} Me gusta</div>
           </ion-badge>         
         </ion-col>
         <ion-col center style="text-align: center;">
-          <ion-badge color="warning">
+          <ion-badge color="tertiary">
             <ion-icon name="text"></ion-icon>
-            <div>{{sitio.comentarios.length}} Comments</div>
+            <div>{{sitio.comentarios.length}} Commentarios</div>
           </ion-badge>          
         </ion-col>
-        <ion-col center style="text-align: center;">
+        <!-- <ion-col center style="text-align: center;">
           <ion-badge color="medium">
             <ion-icon name="time"></ion-icon>
             <div>11h ago</div>
           </ion-badge> 
        
-        </ion-col>
+        </ion-col> -->
       </ion-row>      
     </ion-grid>
   </ion-footer>

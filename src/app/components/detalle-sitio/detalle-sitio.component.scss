@@ -47,7 +47,7 @@
 }
 
 .border-blue {
-    border: 6px solid #00C2A8;
+    border: 6px solid #bac8e0;
     border-radius: 50%;
     width: fit-content; 
 }
@@ -60,7 +60,7 @@
 
 ion-content { --background: linear-gradient(rgba(67, 67, 67, 0.5), rgba(0, 0, 0, 0.5));}
 
-ion-badge { --background: #00C2A8;}
+ion-badge { --background: #a7a6cb;}
 
 ion-card {
     --background: rgba(0, 0, 0, 0.7);
@@ -69,6 +69,11 @@ ion-card {
 ion-item {
     --background: rgba(0, 0, 0, 0.5);
     --color: #fafafa;
+}
+
+ion-toolbar{
+    --background: #13547a;
+    --opacity:0.5;
 }
 
 .map {

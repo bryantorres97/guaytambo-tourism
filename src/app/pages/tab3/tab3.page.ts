@@ -37,19 +37,16 @@ export class Tab3Page {
     if( this.map === undefined) {
       this.map = new mapboxgl.Map({
         style: 'mapbox://styles/mapbox/light-v10',
-        center: [-78.6269361, -1.2412194],
-        //center: [-63.29223632812499, -18.28151823530889],
+        center: [-78.6269361, -1.2412194],        
         zoom: 15.5,
         pitch: 45,
         bearing: -17.6,
         container: 'map',
         antialias: true
       });
-      // The 'building' layer in the mapbox-streets vector source contains building-height
-      // data from OpenStreetMap.
+
       this.map.on('load', () => {
-        this.map.resize();
-        // Insert the layer beneath any symbol layer.
+        this.map.resize(); 
         let layers = this.map.getStyle().layers;
         let labelLayerId;
         for (let i = 0; i < layers.length; i++) {
@@ -67,8 +64,6 @@ export class Tab3Page {
           'minzoom': 15,
           'paint': {
             'fill-extrusion-color': '#aaa',
-            // use an 'interpolate' expression to add a smooth transition effect to the
-            // buildings as the user zooms in
             'fill-extrusion-height': [
               'interpolate',
               ['linear'],
@@ -92,13 +87,6 @@ export class Tab3Page {
         }, labelLayerId);
       });
   
-      let marker = new mapboxgl.Marker({
-        draggable: false
-      })
-        .setLngLat([-78.6269361, -1.2412194])
-        .addTo(this.map);
-  
-      // Add geolocate control to the map.
       this.map.addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {
@@ -109,17 +97,14 @@ export class Tab3Page {
       );
   
       this.crearMarcadores();
-    }    
-   
-    
-
+    }
   }
 
   private crearMarcadores() {
     from(this.sitios).subscribe((sitio: Sitio) => {
       let el = document.createElement('div');
       el.className = 'marker';
-      el.style.backgroundImage = `url(assets/markers/${sitio.categoria.marcador})`;
+      el.style.backgroundImage = `url(assets/markers/${sitio.categoria.marcador}.svg)`;
       el.style.backgroundSize = 'cover';
       el.style.width = '35px';
       el.style.height = '35px';
@@ -135,10 +120,6 @@ export class Tab3Page {
       modal.present();
       });
 
-      // create the popup
-      var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-        'Construction on the Washington Monument began in 1848.'
-      );
       // add marker to map
       new mapboxgl.Marker(el)
         .setLngLat([sitio.longitud, sitio.latitud])
