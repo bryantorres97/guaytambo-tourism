@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.14",
     "@babel/compat-data": "7.8.0",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/facebook": "^5.27.0",
     "@ionic-native/geolocation": "^5.23.0",
     "@ionic-native/google-plus": "^5.27.0",
     "@ionic-native/in-app-browser": "^5.26.0",
@@ -33,6 +34,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/leaflet": "^1.5.12",
     "cordova-android": "8.1.0",
+    "cordova-plugin-facebook4": "^6.4.0",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-googleplus": "^8.5.0",
     "cordova-plugin-inappbrowser": "^4.0.0",
@@ -93,7 +95,13 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "305828413920865",
+        "APP_NAME": "Turismo Guaytambo",
+        "FACEBOOK_HYBRID_APP_EVENTS": "false",
+        "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
+      }
     },
     "platforms": [
       "android"

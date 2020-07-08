@@ -27,6 +27,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Facebook} from '@ionic-native/facebook/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +53,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
   ],
   providers: [
     GooglePlus,
+    Facebook,
     StatusBar,
     SplashScreen,
     Geolocation,

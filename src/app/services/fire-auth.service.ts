@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { auth } from 'firebase/app';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 import { Usuario } from '../interfaces/usuario.interface';
 
@@ -19,6 +20,7 @@ export class FireAuthService {
 		private AFauth: AngularFireAuth,
     private platform: Platform,
     private google: GooglePlus,
+    private fb: Facebook,
     private http: HttpClient) { }
     
     async verificarSesion() {
@@ -48,6 +50,13 @@ export class FireAuthService {
       return this.google.login({}).then( res => {
         const user_data_google = res;  
         return this.AFauth.auth.signInWithCredential(auth.GoogleAuthProvider.credential(null, user_data_google.accessToken))
+      })
+    }
+
+    async loginWithFacebook() {
+      return this.fb.login(['email', 'public_profile']).then( (response: FacebookLoginResponse) => {
+        const credential_fb = auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+        return this.AFauth.auth.signInWithCredential(credential_fb);
       })
     }
   

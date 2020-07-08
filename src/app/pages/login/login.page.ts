@@ -80,14 +80,19 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async loginFacebook() {
-    console.log(await this.usuarioService.getUsuarioLocal());
+  loginFacebook() {
+    this.auth.loginWithFacebook().then( response => {
+      console.log(response);
+      this.uiService.alertaInformativa(`${JSON.stringify(response)}`);
+    }).catch(err => {
+      this.uiService.alertaInformativa(`<p>${err}</p>`)
+    })
   }
 
   loginGoogle() {
     this.auth.loginWithGoogle().then( (response) =>{
       console.log(response);
-      this.uiService.alertaInformativa(`<pre>${response}</pre>`);
+      this.uiService.alertaInformativa(`${JSON.stringify(response)}`);
       // this.router.navigate(['/home']);
     }).catch(err => {
       this.uiService.alertaInformativa(`<p>${err}</p>`)
