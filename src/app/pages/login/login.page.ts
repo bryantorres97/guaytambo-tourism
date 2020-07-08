@@ -85,7 +85,13 @@ export class LoginPage implements OnInit {
   }
 
   loginGoogle() {
-
+    this.auth.loginWithGoogle().then( (response) =>{
+      console.log(response);
+      this.uiService.alertaInformativa(`<pre>${response}</pre>`);
+      // this.router.navigate(['/home']);
+    }).catch(err => {
+      this.uiService.alertaInformativa(`<p>${err}</p>`)
+    })
   }
 
   async registroMail(fRegistro: NgForm) {

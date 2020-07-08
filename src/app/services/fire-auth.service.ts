@@ -5,6 +5,9 @@ import { HttpClient } from "@angular/common/http";
 // import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook/ngx";
 // import { Usuario } from "../interfaces/user.interface";
 import { auth } from 'firebase/app';
+
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
 import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
@@ -14,7 +17,8 @@ export class FireAuthService {
 
   constructor(
 		private AFauth: AngularFireAuth,
-		private platform: Platform,
+    private platform: Platform,
+    private google: GooglePlus,
     private http: HttpClient) { }
     
     async verificarSesion() {
@@ -38,6 +42,13 @@ export class FireAuthService {
         console.dir(err);
         return err;
       }
+    }
+
+    async loginWithGoogle() {
+      return this.google.login({}).then( res => {
+        const user_data_google = res;  
+        return this.AFauth.auth.signInWithCredential(auth.GoogleAuthProvider.credential(null, user_data_google.accessToken))
+      })
     }
   
     // loginFacebook() {

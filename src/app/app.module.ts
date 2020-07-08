@@ -17,12 +17,16 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 // Angular Fire
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from "@angular/fire/firestore"; //Modulo Firestore (BD)
+import { AngularFireAuthModule } from "@angular/fire/auth";  //Modulo de authenticacion
+import { AngularFireModule } from "@angular/fire";            //Modulo para inicializar y que todo funcione bien vergas
 
 // SECTION -  Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,10 +46,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       }
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     AngularFireAuthModule,
     AppRoutingModule
   ],
   providers: [
+    GooglePlus,
     StatusBar,
     SplashScreen,
     Geolocation,
