@@ -59,28 +59,12 @@ export class FireAuthService {
         return this.AFauth.auth.signInWithCredential(credential_fb);
       })
     }
-  
-    // loginFacebook() {
-    //   this.fb
-    //     .login(["public_profile", "email"])
-    //     .then((res: FacebookLoginResponse) => {
-    //       console.log("Logged into Facebook!", res);
-    //       this.loginFacebookSuccess(res);
-  
-    //     })
-    //     .catch(e => console.log("Error logging into Facebook desde login Inicial", e));
-    // }
-  
-    // loginFacebookSuccess(res: FacebookLoginResponse) {
-    //   let credential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-    //   this.AFauth.auth.signInWithCredential(credential).then(info => {
-    //     alert(info);
-    //     console.log(info);
-    //   }).catch(
-    //     e => console.log("Error logging into Facebook Firebase", e)
-    //   );
-    // }
-  
+
+    async loginAnonimo() {
+      return this.AFauth.auth.signInAnonymously();
+    }
+
+
     async registerUser(usuario: Usuario) {
       try {
         const res = await this.AFauth.auth.createUserWithEmailAndPassword(usuario.email, usuario.password);        

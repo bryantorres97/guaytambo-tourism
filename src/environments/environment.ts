@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlTurismoApi: 'http://localhost:3000',
+  urlTurismoApi: 'https://www.turismoguaytambo.xyz',
   mapboxToken: 'pk.eyJ1IjoidHVyaXNtb2FtYmF0byIsImEiOiJjazg2bzIzbmswand2M2VtY3NsNjg3ZjJ4In0.VBApu-SJV-i-abCt0OBxeQ',
   // firebaseConfig: {
   //   apiKey: "AIzaSyAXBlVIApZ83tQmXPwhC2t4uB1bLjip2E0",

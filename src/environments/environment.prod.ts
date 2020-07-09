@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  urlTurismoApi: 'http://localhost:3000',
+  urlTurismoApi: 'https://www.turismoguaytambo.xyz',
   mapboxToken: 'pk.eyJ1IjoidHVyaXNtb2FtYmF0byIsImEiOiJjazg2bzIzbmswand2M2VtY3NsNjg3ZjJ4In0.VBApu-SJV-i-abCt0OBxeQ',
   firebaseConfig: {
     apiKey: "AIzaSyBgbCVGIVEyNB1lNFjPBgSaLY8xRrycy7g",

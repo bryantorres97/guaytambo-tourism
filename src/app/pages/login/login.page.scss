@@ -10,30 +10,6 @@ img {
 
 // SECTION TEMA PRINCIPAL
 
-// .login-header {
-//   background: var(--theme-color);
-// }
-
-// .login-header {
-//   position: relative;
-//   background: var(--theme-color);
-//   border-radius: 0em;
-// }
-
-// .login-header:after {
-//   content: '';
-//   position: absolute;
-//   bottom: 0;
-//   left: 15%;
-//   width: 0;
-//   height: 0;
-//   border: 20px solid transparent;
-//   border-top-color: var(--theme-color);
-//   border-bottom: 0;
-//   margin-left: -15px;
-//   margin-bottom: -15px;
-// }
-
 .logo-img {
   display: block;
   width: 60px;
@@ -130,6 +106,11 @@ ion-icon {
 
 .btn-facebook {
   --background: #3b5998;
+  color: #fafafa;
+}
+
+.btn-google {
+  --background: #DB4437;
   color: #fafafa;
 }
 

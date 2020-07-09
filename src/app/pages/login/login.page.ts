@@ -82,20 +82,63 @@ export class LoginPage implements OnInit {
 
   loginFacebook() {
     this.auth.loginWithFacebook().then( response => {
-      console.log(response);
-      this.uiService.alertaInformativa(`${JSON.stringify(response)}`);
+      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe( resp => {
+        if (resp['ok'] && resp['user'] === null ) {
+          this.usuario = {
+            tipo: 'facebook',
+            email: response.user.email,
+            avatar: response.user.photoURL || 'av-1.png',
+            nickname: response.user.displayName        
+          }
+
+          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
+            if(resp['ok']){
+              this.usuarioService.usuario = resp['user'];
+              this.usuarioService.setUsuario(this.usuarioService.usuario);
+              this.navController.navigateRoot('main/tabs/tab1', {animated: true});
+            }
+          }, (err) => {            
+            this.uiService.alertaInformativa(JSON.stringify(err));
+          });
+
+        }
+        this.usuarioService.usuario = resp['user'];
+        this.usuarioService.setUsuario(this.usuarioService.usuario);
+      })
     }).catch(err => {
-      this.uiService.alertaInformativa(`<p>${err}</p>`)
+      this.uiService.alertaInformativa(JSON.stringify(err));
     })
   }
 
   loginGoogle() {
     this.auth.loginWithGoogle().then( (response) =>{
-      console.log(response);
-      this.uiService.alertaInformativa(`${JSON.stringify(response)}`);
-      // this.router.navigate(['/home']);
+
+      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe( resp => {
+        if (resp['ok'] && resp['user'] === null ) {
+          this.usuario = {
+            tipo: 'google',
+            email: response.user.email,
+            avatar: response.user.photoURL || 'av-1.png',
+            nickname: response.user.displayName        
+          }
+
+          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
+            if(resp['ok']){
+              this.usuarioService.usuario = resp['user'];
+              this.usuarioService.setUsuario(this.usuarioService.usuario);
+              this.navController.navigateRoot('main/tabs/tab1', {animated: true});
+            }
+          }, (err) => {            
+            this.uiService.alertaInformativa(JSON.stringify(err));
+          });
+
+        }
+        this.usuarioService.usuario = resp['user'];
+        this.usuarioService.setUsuario(this.usuarioService.usuario);
+      })
+      
     }).catch(err => {
-      this.uiService.alertaInformativa(`<p>${err}</p>`)
+      this.uiService.alertaInformativa(JSON.stringify(err));
     })
   }
 
