@@ -13,6 +13,7 @@ import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Calificacion } from 'src/app/interfaces/calificacion.interface';
 import { SitioService } from 'src/app/services/sitio.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -37,7 +38,8 @@ export class DetalleSitioComponent implements OnInit {
     private uiService: UiService,
     private usuarioService: UsuarioService,
     private comentarioService: ComentarioService,
-    private sitioService: SitioService) {
+    private sitioService: SitioService,
+    private callNumber: CallNumber) {
 
   }
 
@@ -218,8 +220,12 @@ export class DetalleSitioComponent implements OnInit {
 
   abrirURL(url: string) {
     // const browser = this.iab.create(url);
-    console.log(url)
-    this.iab.create('https://' + url, '_blank');
+    // console.log(url)
+    this.iab.create(url, '_blank');
+  }
+
+  abrirWhatsapp(numero: string) {
+    this.iab.create(`https://api.whatsapp.com/send?phone=${numero}`, '_system');
   }
 
   agregarCalificacion(like: boolean) {
@@ -242,5 +248,10 @@ export class DetalleSitioComponent implements OnInit {
     })
   }
 
+  abrirTelefono(numero: string){
+    this.callNumber.callNumber(numero, false)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
 
 }

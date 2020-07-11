@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@babel/compat-data": "7.8.0",
+    "@ionic-native/call-number": "^5.27.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/facebook": "^5.27.0",
     "@ionic-native/geolocation": "^5.23.0",
@@ -33,6 +34,7 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/leaflet": "^1.5.12",
+    "call-number": "^1.0.1",
     "cordova-android": "8.1.0",
     "cordova-plugin-facebook4": "^6.4.0",
     "cordova-plugin-geolocation": "^4.0.2",
@@ -101,7 +103,8 @@
         "APP_NAME": "Turismo Guaytambo",
         "FACEBOOK_HYBRID_APP_EVENTS": "false",
         "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
-      }
+      },
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android"

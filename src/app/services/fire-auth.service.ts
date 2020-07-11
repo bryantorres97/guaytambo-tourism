@@ -10,18 +10,31 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 import { Usuario } from '../interfaces/usuario.interface';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireAuthService {
 
+  public usuario: Usuario = null;
+
   constructor(
 		private AFauth: AngularFireAuth,
     private platform: Platform,
     private google: GooglePlus,
     private fb: Facebook,
-    private http: HttpClient) { }
+    private http: HttpClient) {
+
+      this.AFauth.authState.subscribe( user => {
+        if (! user ) {
+          return;
+        }
+        this.usuario.nickname = user.displayName;
+        this.usuario.avatar = user.photoURL;
+        this.usuario.email = user.email;
+      })
+     }
     
     async verificarSesion() {
       this.platform.ready().then(() => {
@@ -62,6 +75,24 @@ export class FireAuthService {
 
     async loginAnonimo() {
       return this.AFauth.auth.signInAnonymously();
+    }
+
+    async logoutGoogle(){
+      return this.AFauth.auth.signOut().then(() => {
+        this.google.disconnect();
+      });
+    }
+
+
+    async logoutFacebook() {
+      return this.AFauth.auth.signOut().then(() => {
+        this.fb.logout();
+      });
+    }
+
+
+    async logoutAnonimo() {
+      return this.AFauth.auth.signOut();
     }
 
 

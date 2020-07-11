@@ -47,8 +47,7 @@ export class UsuarioService {
   validaUsuario(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.getUsuarioLocal().then(user => {
-        if (user) {
-          console.log(user);
+        if (user) {          
           resolve(true);
         } else {
           this.navController.navigateRoot('/login');

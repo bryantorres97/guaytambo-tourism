@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 // Angular Fire
 import { AngularFirestoreModule } from "@angular/fire/firestore"; //Modulo Firestore (BD)
@@ -58,6 +59,7 @@ import { Facebook} from '@ionic-native/facebook/ngx';
     SplashScreen,
     Geolocation,
     InAppBrowser,
+    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

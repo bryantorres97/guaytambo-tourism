@@ -33,12 +33,12 @@ export class LoginPage implements OnInit {
     verifyPassword: ''
   };
 
-  constructor(  private auth: FireAuthService, 
-                private lauth: LocalAuthService, 
-                private uiService: UiService,
-                private usuarioService: UsuarioService, 
-                private loadingController: LoadingController,
-                private navController: NavController) { }
+  constructor(private auth: FireAuthService,
+    private lauth: LocalAuthService,
+    private uiService: UiService,
+    private usuarioService: UsuarioService,
+    private loadingController: LoadingController,
+    private navController: NavController) { }
 
   async ngOnInit() {
     this.auth.verificarSesion();
@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
     this.slides.lockSwipes(true);
   }
 
-  async loginMail(fLogin: NgForm) {    
+  async loginMail(fLogin: NgForm) {
     if (fLogin.invalid) {
       this.comprobarCamposRequeridosLogin(fLogin);
     } else {
@@ -61,18 +61,18 @@ export class LoginPage implements OnInit {
       loading.present();
       this.auth.loginMail(this.loginUser.email, this.loginUser.password).then((resp) => {
         // console.log(resp);
-        if(resp['code'] === 'auth/wrong-password' || resp['code'] === 'auth/user-not-found') {
+        if (resp['code'] === 'auth/wrong-password' || resp['code'] === 'auth/user-not-found') {
           this.uiService.alertaInformativa('Usuario y/o contraseña incorrectos');
           loading.dismiss();
           return;
         }
 
-        if(resp['operationType'] === 'signIn') {
+        if (resp['operationType'] === 'signIn') {
           // console.log(resp['user'].email);
           this.usuarioService.getUsuarioByEmail(resp['user'].email).subscribe((resp) => {
             console.log(resp);
             this.usuarioService.setUsuario(resp['user']);
-            this.navController.navigateRoot('main/tabs/tab1', {animated: true});           
+            this.navController.navigateRoot('main/tabs/tab1', { animated: true });
           });
         }
       });
@@ -81,29 +81,30 @@ export class LoginPage implements OnInit {
   }
 
   loginFacebook() {
-    this.auth.loginWithFacebook().then( response => {
-      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe( resp => {
-        if (resp['ok'] && resp['user'] === null ) {
+    this.auth.loginWithFacebook().then(response => {
+      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe(resp => {
+        if (resp['ok'] && resp['user'] === null) {
           this.usuario = {
             tipo: 'facebook',
             email: response.user.email,
-            avatar: response.user.photoURL || 'av-1.png',
-            nickname: response.user.displayName        
+            avatar: `${response.user.photoURL}?height=500` || 'av-1.png',
+            nickname: response.user.displayName
           }
 
-          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
-            if(resp['ok']){
+          this.lauth.registerUser(this.usuario).subscribe(async (resp) => {
+            if (resp['ok']) {
               this.usuarioService.usuario = resp['user'];
               this.usuarioService.setUsuario(this.usuarioService.usuario);
-              this.navController.navigateRoot('main/tabs/tab1', {animated: true});
+              this.navController.navigateRoot('main/tabs/tab1', { animated: true });
             }
-          }, (err) => {            
+          }, (err) => {
             this.uiService.alertaInformativa(JSON.stringify(err));
           });
-
+          return;
         }
         this.usuarioService.usuario = resp['user'];
         this.usuarioService.setUsuario(this.usuarioService.usuario);
+        this.navController.navigateRoot('main/tabs/tab1', { animated: true });
       })
     }).catch(err => {
       this.uiService.alertaInformativa(JSON.stringify(err));
@@ -111,34 +112,52 @@ export class LoginPage implements OnInit {
   }
 
   loginGoogle() {
-    this.auth.loginWithGoogle().then( (response) =>{
+    this.auth.loginWithGoogle().then((response) => {
 
-      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe( resp => {
-        if (resp['ok'] && resp['user'] === null ) {
+      this.usuarioService.getUsuarioByEmail(response.user.email).subscribe(resp => {
+        if (resp['ok'] && resp['user'] === null) {
           this.usuario = {
             tipo: 'google',
             email: response.user.email,
-            avatar: response.user.photoURL || 'av-1.png',
-            nickname: response.user.displayName        
+            avatar: `${response.user.photoURL}` || 'av-1.png',
+            nickname: response.user.displayName
           }
 
-          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
-            if(resp['ok']){
+          this.lauth.registerUser(this.usuario).subscribe(async (resp) => {
+            if (resp['ok']) {
               this.usuarioService.usuario = resp['user'];
-              this.usuarioService.setUsuario(this.usuarioService.usuario);
-              this.navController.navigateRoot('main/tabs/tab1', {animated: true});
+              this.usuarioService.setUsuario(this.usuarioService.usuario); 
+              this.navController.navigateRoot('main/tabs/tab1', { animated: true });             
             }
-          }, (err) => {            
+          }, (err) => {
             this.uiService.alertaInformativa(JSON.stringify(err));
           });
-
+          return;
         }
         this.usuarioService.usuario = resp['user'];
         this.usuarioService.setUsuario(this.usuarioService.usuario);
+        this.navController.navigateRoot('main/tabs/tab1', { animated: true });
+      },
+      error => {
+        this.uiService.alertaInformativa(error);
       })
-      
+
     }).catch(err => {
       this.uiService.alertaInformativa(JSON.stringify(err));
+    })
+  }
+
+
+  loginAnonimo() {
+    this.auth.loginAnonimo().then((response) => {
+      this.usuario = {
+        tipo: 'anonimo',
+        avatar: 'av-1.png',
+        nickname: 'Invitado'
+      }
+      this.usuarioService.usuario = this.usuario;
+      this.usuarioService.setUsuario(this.usuarioService.usuario);
+      this.navController.navigateRoot('main/tabs/tab1', { animated: true });
     })
   }
 
@@ -159,15 +178,15 @@ export class LoginPage implements OnInit {
         password: this.registerUser.password
       }
       this.auth.registerUser(this.usuario).then(async (resp) => {
-        console.log(resp);        
-        if(resp['code'] === 'auth/email-already-in-use') {
+        console.log(resp);
+        if (resp['code'] === 'auth/email-already-in-use') {
           this.uiService.alertaInformativa(resp['message']);
-        } else if(resp['operationType'] === 'signIn') {
-          this.lauth.registerUser(this.usuario).subscribe(async (resp)=>{
-            if(resp['ok']){
+        } else if (resp['operationType'] === 'signIn') {
+          this.lauth.registerUser(this.usuario).subscribe(async (resp) => {
+            if (resp['ok']) {
               this.usuarioService.usuario = resp['user'];
               this.usuarioService.setUsuario(this.usuarioService.usuario);
-              this.navController.navigateRoot('main/tabs/tab1', {animated: true});
+              this.navController.navigateRoot('main/tabs/tab1', { animated: true });
             }
           }, (err) => {
             console.log(err);

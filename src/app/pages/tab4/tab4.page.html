@@ -19,8 +19,8 @@
   <div class="flex">
     <div class="border-blue">
       <div class="border-white">
-        <div class="img-box" [style]=" usuario.avatar | avatar" *ngIf="usuario.tipo === 'email'"></div>    
-        <div class="img-box" [style]=" usuario.avatar | avatar" *ngIf="usuario.tipo !== 'email'"></div>    
+        <div class="img-box" [style]=" usuario.avatar | avatar" *ngIf="usuario.tipo === 'email' || usuario.tipo ==='anonimo'"></div>    
+        <div class="img-box" [style]=" usuario.avatar | imagenPerfil" *ngIf="!(usuario.tipo === 'email' || usuario.tipo ==='anonimo')"></div>    
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
   <app-slideshow-poster [favoritos]="usuario.favoritos"></app-slideshow-poster>
 
   <ion-list>
-    <ion-item>
+    <ion-item (click)="logout()">
       <ion-icon slot="start" name="log-out"></ion-icon>
       <!-- <ion-label>{{ 'profile.darkMode' | translate }}</ion-label> -->
       <ion-label>Cerrar sesión</ion-label>

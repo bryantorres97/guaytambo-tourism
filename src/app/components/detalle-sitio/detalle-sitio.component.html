@@ -84,11 +84,13 @@
               <ion-icon name="globe-outline" slot="start" color="medium"></ion-icon>
               <ion-label>{{sitio.website}}</ion-label>
             </ion-item>
-            <ion-item>
+
+            <ion-item (click)="abrirWhatsapp(sitio.whatsapp)">
               <ion-icon name="logo-whatsapp" slot="start" color="medium"></ion-icon>
               <ion-label>{{sitio.whatsapp}}</ion-label>
-            </ion-item>            
-            <ion-item *ngFor="let telefono of sitio.telefonos">
+            </ion-item>
+
+            <ion-item *ngFor="let telefono of sitio.telefonos" (click)="abrirTelefono(telefono)">
               <ion-icon name="call-outline" slot="start" color="medium"></ion-icon>
               <ion-label>{{telefono}}</ion-label>
             </ion-item>           
