@@ -29,7 +29,8 @@
         "contact": "Contact",
         "location": "Location",
         "gallery": "Gallery",
-        "comment": "Comment"
+        "comment": "Comment",
+        "close": "Close"
     },
     
     "tabs" : {
