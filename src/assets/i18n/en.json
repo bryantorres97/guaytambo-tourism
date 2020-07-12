@@ -3,14 +3,22 @@
         "email": "Email",
         "password": "Password",
         "login": "Login",
-        "createAccount": "Create account"        
+        "register": "Register",
+        "use": "Use",
+        "guest": "Guest",
+        "nickname": "Nickname",
+        "confirmPassword": "Confirm password",
+        "createUser": "Create user",
+        "chooseAvatar": "Choose avatar"      
     },
 
     "profile": {
         "preferences": "Preferences",
         "darkMode": "Dark mode",
         "saved": "Saved",
-        "likes": "Likes"
+        "likes": "Likes",
+        "favoritePlaces": "Favorite Places",
+        "signOut": "Sign out"
     },
     
     "tabs" : {

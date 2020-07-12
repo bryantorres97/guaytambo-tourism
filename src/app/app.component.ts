@@ -28,7 +28,7 @@ export class AppComponent {
       this.statusBar.styleBlackOpaque();
       this.splashScreen.hide();
       this.translationService.setInitialAppLanguage();
-      this.themeService.loadTheme();
+      this.themeService.loadTheme();      
     });
   }
 }

@@ -7,7 +7,7 @@
 
         <ion-row>
           <ion-col size="12">
-            <h3 style="color: #fafafa">Turismo Ambato</h3>
+            <h3 style="color: #fafafa">Turismo Guaytambo</h3>
             <img src="assets/icon/flower.svg" alt="">
           </ion-col>
         </ion-row>
@@ -17,7 +17,7 @@
               <ion-item transparent>
                 <ion-icon slot="start" name="mail-outline" [class.icon-invalid] ="email.invalid && email.touched"></ion-icon>
                 <ion-input  type="email" 
-                            placeholder="Email" 
+                            [placeholder]="'login.email' | translate" 
                             name="email" 
                             [(ngModel)]="loginUser.email"
                             minlength="5"
@@ -32,7 +32,7 @@
               <ion-item transparent>
                 <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="password.invalid && password.touched"></ion-icon>
                 <ion-input  type="password" 
-                            placeholder="Password" 
+                            [placeholder]="'login.password' | translate" 
                             name="password" 
                             [(ngModel)]="loginUser.password"                            
                             [class.is-invalid] ="password.invalid && password.touched" 
@@ -53,7 +53,7 @@
 
             <ion-col size="8">
               <ion-button expand="block" fill="solid" class="btn-login" type="submit">
-                Iniciar sesión
+                {{'login.login' | translate}}
               </ion-button>
             </ion-col>
 
@@ -65,19 +65,19 @@
           <ion-col size="4">
             <ion-button (click)="loginFacebook()" expand="block" fill="solid" class="btn-facebook" size="small">
               <ion-icon slot="end" name="logo-facebook"></ion-icon>
-              Usar
+              {{'login.use' | translate}}
             </ion-button>
           </ion-col>
           <ion-col size="4">
             <ion-button (click)="loginGoogle()" expand="block" fill="solid" class="btn-google" size="small">
               <ion-icon slot="end" name="logo-google"></ion-icon>
-              Usar
+             {{'login.use' | translate}}
             </ion-button>
           </ion-col>
           <ion-col size="4">
             <ion-button (click)="loginAnonimo()" expand="block" fill="solid" class="btn-invitado" size="small">
               <ion-icon slot="end" name="glasses"></ion-icon>
-              Invitado
+              {{'login.guest' | translate}}
             </ion-button>
           </ion-col>
         </ion-row>
@@ -88,7 +88,7 @@
 
           <ion-col size="8">
             <ion-button (click)="mostrarRegistro()" expand="block" fill="clear" class="btn-registro">
-              Registrate
+              {{'login.register' | translate}}
             </ion-button>
           </ion-col>
 
@@ -115,7 +115,7 @@
                 <ion-icon slot="start" name="mail-outline" [class.icon-invalid] ="(emailRegistro.invalid && emailRegistro.touched)"></ion-icon>
                 <ion-input  name="email" 
                             type="email" 
-                            placeholder="Correo" 
+                            [placeholder]="'login.email' | translate" 
                             [(ngModel)]="registerUser.email" 
                             minlength="5"
                             [class.is-invalid] ="(emailRegistro.invalid && emailRegistro.touched)"
@@ -131,7 +131,7 @@
                 <ion-icon slot="start" name="person-outline" [class.icon-invalid] ="(usuarioRegistro.invalid && usuarioRegistro.touched)"></ion-icon>
                 <ion-input  name="usuario" 
                             type="text" 
-                            placeholder="Usuario" 
+                            [placeholder]="'login.nickname' | translate" 
                             [(ngModel)]="registerUser.nick"
                             minlength="3"
                             maxlength="40"
@@ -148,7 +148,7 @@
                 <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="(passwordRegistro.invalid && passwordRegistro.touched)" ></ion-icon>
                 <ion-input  name="password" 
                             type="password" 
-                            placeholder="Password" 
+                            [placeholder]="'login.password' | translate" 
                             [(ngModel)]="registerUser.password"
                             minlength="6"
                             maxlength="20"
@@ -165,7 +165,7 @@
                 <ion-icon slot="start" name="lock-closed-outline" [class.icon-invalid] ="(checkPassword.invalid && checkPassword.touched)" ></ion-icon>
                 <ion-input  name="verifyPassword" 
                             type="password" 
-                            placeholder="Verificar Password" 
+                            [placeholder]="'login.confirmPassword' | translate" 
                             [(ngModel)]="registerUser.verifyPassword"
                             minlength="6"
                             maxlength="20"
@@ -182,14 +182,14 @@
             </ion-col>
             <ion-col size="8">
               <ion-button type="submit" color="tertiary" expand="block" fill="solid">
-                Crear usuario
+                {{'login.createUser' | translate}}
               </ion-button>
             </ion-col>
             <ion-col size="2">             
             </ion-col>
             <ion-col>
               <ion-button (click)="mostrarLogin()" fill="clear" shape="round">
-                Iniciar sesion
+                {{'login.login' | translate}}
               </ion-button>
             </ion-col>
           </ion-row>

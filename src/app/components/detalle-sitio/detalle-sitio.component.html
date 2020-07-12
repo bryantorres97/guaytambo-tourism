@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button (click)="regresar()" color="gray">
         <ion-icon slot="start" name="arrow-back-sharp"></ion-icon>
-        
+
       </ion-button>
     </ion-buttons>
     <ion-title>{{sitio.nombreEs}}</ion-title>
@@ -13,15 +13,15 @@
 
 <ion-content [style]=" ( sitio.imagenPortada | imagen: 'sitio'
 : 'cover'
-: sitio._id ) | imagenPortada"  #content> 
+: sitio._id ) | imagenPortada" #content>
   <!-- <div style="background-image: url(assets/img/cover.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; position: absolute; z-index: -1;"></div>  -->
   <div class="header" [style]=" ( sitio.imagenPortada | imagen: 'sitio'
   : 'cover'
   : sitio._id ) | imagenPortada">
-    <h2></h2>    
+    <h2></h2>
     <div class="space-between">
       <div class="followings">
-        <ion-badge  mode="ios">
+        <ion-badge mode="ios">
           <div>{{sitio.calificaciones | numeroLikes }} Me gusta</div>
         </ion-badge>
         <!-- <p>{{ 'profile.likes' | translate }}</p>    -->
@@ -43,7 +43,7 @@
         : 'profile'
         : sitio._id ) | imagenPerfil">
           <!-- <img src="assets/img/167030.jpg" alt="">     -->
-        </div>    
+        </div>
       </div>
     </div>
   </div>
@@ -53,14 +53,14 @@
     <ion-row>
       <ion-col size-md="6" size-sm="12" size-xs="12">
         <ion-card>
-          <ion-card-header color="primary">        
-            
-            <ion-card-subtitle> 
+          <ion-card-header color="primary">
+
+            <ion-card-subtitle>
               <ion-icon name="information-circle-outline"></ion-icon>
               Información general
             </ion-card-subtitle>
           </ion-card-header>
-        
+
           <ion-card-content>
             <p class="overview" style="padding-top: 5px; color: #fafafa;">
               {{sitio.descripcionEs}}
@@ -68,24 +68,24 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      
+
       <ion-col size-md="6" size-sm="12" size-xs="12">
-        <ion-card>
-          <ion-card-header color="tertiary">           
-            
-            <ion-card-subtitle> 
+        <ion-card *ngIf="sitio.website !== '' || sitio.whatsapp !=='' || sitio.telefonos.length > 0">
+          <ion-card-header color="tertiary">
+
+            <ion-card-subtitle>
               <ion-icon name="chatbubble-outline"></ion-icon>
               Contacto
             </ion-card-subtitle>
           </ion-card-header>
-        
+
           <ion-card-content color="medium">
-            <ion-item (click)="abrirURL(sitio.website)">
+            <ion-item (click)="abrirURL(sitio.website)" *ngIf="sitio.website !== ''">
               <ion-icon name="globe-outline" slot="start" color="medium"></ion-icon>
               <ion-label>{{sitio.website}}</ion-label>
             </ion-item>
 
-            <ion-item (click)="abrirWhatsapp(sitio.whatsapp)">
+            <ion-item (click)="abrirWhatsapp(sitio.whatsapp)" *ngIf="sitio.whatsapp !== ''">
               <ion-icon name="logo-whatsapp" slot="start" color="medium"></ion-icon>
               <ion-label>{{sitio.whatsapp}}</ion-label>
             </ion-item>
@@ -93,45 +93,45 @@
             <ion-item *ngFor="let telefono of sitio.telefonos" (click)="abrirTelefono(telefono)">
               <ion-icon name="call-outline" slot="start" color="medium"></ion-icon>
               <ion-label>{{telefono}}</ion-label>
-            </ion-item>           
+            </ion-item>
           </ion-card-content>
         </ion-card>
       </ion-col>
 
-      
-      
+
+
     </ion-row>
     <!-- !SECTION -  -->
 
     <!-- SECTION - Contacto y mapa -->
     <ion-row>
-    
+
       <ion-col size="12">
         <ion-card>
-          <ion-card-header color="secondary" fill="outline">           
-            
-            <ion-card-subtitle> 
+          <ion-card-header color="secondary" fill="outline">
+
+            <ion-card-subtitle>
               <ion-icon name="location-outline"></ion-icon>
               Ubicacion
             </ion-card-subtitle>
           </ion-card-header>
-        
+
           <ion-card-content color="medium">
-            
-              <ion-item>
-                <ion-icon name="pin" slot="start" color="medium"></ion-icon>
-                <ion-text>
-                  <h5>{{sitio.direccion}}</h5>
-                </ion-text>
-                
-              </ion-item>
-            
+
+            <ion-item>
+              <ion-icon name="pin" slot="start" color="medium"></ion-icon>
+              <ion-text>
+                <h5>{{sitio.direccion}}</h5>
+              </ion-text>
+
+            </ion-item>
+
             <div id="mapa" class="map"></div>
           </ion-card-content>
         </ion-card>
       </ion-col>
-      
-      
+
+
     </ion-row>
     <!-- !SECTION - -->
 
@@ -139,9 +139,9 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header color="primary">        
-            
-            <ion-card-subtitle> 
+          <ion-card-header color="primary">
+
+            <ion-card-subtitle>
               <ion-icon name="images-outline"></ion-icon>
               Galería
             </ion-card-subtitle>
@@ -154,52 +154,43 @@
                   : 'images'
                   : sitio._id ) | imagenPortada" (click)="verImagen(foto, sitio._id)"></div>
                 </ion-col>
-                
+
               </ion-row>
             </ion-grid>
           </ion-card-content>
-        </ion-card>        
+        </ion-card>
       </ion-col>
     </ion-row>
-<!-- !SECTION -->
+    <!-- !SECTION -->
 
-<ion-row>
-  <ion-col size="12">
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size-md="6" size-sm="12" size-xs="12" size-xl="4" *ngFor="let comentario of sitio.comentarios; let i=index">
-          <ion-card *ngIf="comentario.estaActivo">
-            <ion-item>
-              <ion-avatar slot="start">
-                <img [src]="'/assets/avatars/'+comentario.usuario.avatar">
-              </ion-avatar>
-              <ion-label>
-                <h3>{{comentario.usuario.nickname}}</h3>
-                <p>{{ comentario.created | fecha: 'en'}}</p>
-              </ion-label>
-            </ion-item>         
-
-            <ion-card-content>
-              {{comentario.texto}}
-            </ion-card-content>
-            <ion-card-subtitle *ngIf="usuario._id === comentario.usuario._id">
-              <ion-item (click)="mostrarFormaBorrarComentario(comentario._id, sitio._id,i)">
-                <ion-icon name="trash-outline" slot="end"></ion-icon>                             
-              </ion-item>
-            </ion-card-subtitle>          
-          </ion-card>
-        </ion-col>
+    <ion-row>
+      <ion-col size="12">
         
-      </ion-row>
-    </ion-grid>    
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col size="12"></ion-col>
-</ion-row>
+
+        <app-lista-comentarios [comentarios] ="comentarios" [usuario]="usuario" [sitioId]="sitio._id" (enviarComentarios)= "refrescarComentarios($event)"> </app-lista-comentarios>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12"></ion-col>
+    </ion-row>
   </ion-grid>
 
-  
+
 </ion-content>
 
 
@@ -214,14 +205,14 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="agregarCalificacion(false)">        
+      <ion-button (click)="agregarCalificacion(false)">
         <ion-icon slot="icon-only" name={{iconoDislike}} color="gray"></ion-icon>
       </ion-button>
-      <ion-button (click)="agregarCalificacion(true)">        
+      <ion-button (click)="agregarCalificacion(true)">
         <ion-icon slot="icon-only" name={{iconoLike}} color="gray"></ion-icon>
       </ion-button>
       <ion-button (click)="favorito()">
-        <ion-icon slot="icon-only" name={{iconoFavorito}} color="danger"></ion-icon>        
+        <ion-icon slot="icon-only" name={{iconoFavorito}} color="danger"></ion-icon>
       </ion-button>
     </ion-buttons>
 

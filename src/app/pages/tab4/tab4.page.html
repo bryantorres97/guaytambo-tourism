@@ -4,13 +4,13 @@
     <h2>{{usuario.nickname}}</h2>
 
     <div class="space-between">
-      <div class="followings">
+      <!-- <div class="followings">
         <ion-badge color="primary" mode="ios">42</ion-badge>
         <p>{{ 'profile.likes' | translate }}</p>   
-      </div>
+      </div> -->
 
       <div class="followings">
-        <ion-badge color="primary" mode="ios">42</ion-badge>
+        <ion-badge color="primary" mode="ios">{{usuario.favoritos.length}}</ion-badge>
         <p>{{ 'profile.saved' | translate }}</p>
       </div>
     </div>
@@ -37,14 +37,14 @@
                   (ionChange)="changeTheme()"></ion-toggle>
     </ion-item>
   </ion-list>
-
+  <h3>Tus favoritos</h3>
   <app-slideshow-poster [favoritos]="usuario.favoritos"></app-slideshow-poster>
 
   <ion-list>
     <ion-item (click)="logout()">
       <ion-icon slot="start" name="log-out"></ion-icon>
-      <!-- <ion-label>{{ 'profile.darkMode' | translate }}</ion-label> -->
-      <ion-label>Cerrar sesión</ion-label>
+      <ion-label>{{ 'profile.signOut' | translate }}</ion-label>
+      <!-- <ion-label>Cerrar sesión</ion-label> -->
     </ion-item>
   </ion-list>
 

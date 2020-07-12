@@ -30,7 +30,11 @@ export class FireAuthService {
         if (! user ) {
           return;
         }
-        this.usuario.nickname = user.displayName;
+        if(user.displayName) {
+          this.usuario.nickname = user.displayName;
+        } else {
+          this.usuario.nickname = '';
+        }
         this.usuario.avatar = user.photoURL;
         this.usuario.email = user.email;
       })

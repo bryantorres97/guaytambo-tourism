@@ -11,6 +11,13 @@ import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.compo
 import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
+import { CardComentarioComponent } from './card-comentario/card-comentario.component';
+import { ListaComentariosComponent } from './lista-comentarios/lista-comentarios.component';
+
+//Translation
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,18 +29,31 @@ import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.co
     AvatarSelectorComponent,
     DetalleSitioComponent,
     ImageModalComponent,
-    SlideshowPosterComponent
+    SlideshowPosterComponent,
+    CardComentarioComponent,
+    ListaComentariosComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [
     CategoriasComponent,
     SitiosListaComponent,
     AvatarSelectorComponent,
-    SlideshowPosterComponent
+    SlideshowPosterComponent,
+    CardComentarioComponent,
+    ListaComentariosComponent
   ],
 
   entryComponents: [

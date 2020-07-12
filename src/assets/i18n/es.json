@@ -1,16 +1,24 @@
 {
     "login" : {
         "email": "Correo electrónico",
-        "password": "contraseña",
-        "login": "Ingresar",
-        "createAccount": "Crear cuenta"        
+        "password": "Contraseña",
+        "login": "Iniciar sesión",
+        "register": "Regístrate",
+        "use": "Usar",
+        "guest": "Invitado",
+        "nickname": "Nombre de usuario",
+        "confirmPassword": "Confirmar contraseña",
+        "createUser": "Crear usuario",
+        "chooseAvatar": "Elegir avatar"        
     },
 
     "profile": {
         "preferences": "Preferencias",
         "darkMode": "Modo oscuro",
         "saved": "Guardados",
-        "likes": "Me gusta"
+        "likes": "Me gusta",
+        "favoritePlaces": "Lugares favoritos",
+        "signOut": "Cerrar sesión"
     },
     
     "tabs" : {

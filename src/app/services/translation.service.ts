@@ -5,18 +5,19 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class TranslationService {
-
+  language = '';
   constructor(private translate: TranslateService) { }
 
   setInitialAppLanguage() {
     let language = this.translate.getBrowserLang();
-
+    this.language = language;
     if (language) {
       this.translate.use(language);
     }
   }
 
   setDefaultLanguage(language: string) {
+    this.language = language;
     this.translate.setDefaultLang(language);
   }
 

@@ -30,6 +30,7 @@ export class DetalleSitioComponent implements OnInit {
   iconoLike = 'thumbs-up-outline';
   iconoDislike = 'thumbs-down-outline';
   usuario: Usuario;
+  comentarios: Comentario[] = [];
 
   constructor(private modalController: ModalController,
     private alertController: AlertController,
@@ -43,15 +44,13 @@ export class DetalleSitioComponent implements OnInit {
 
   }
 
-  async ngOnInit() {
-    //console.log(this.sitio);
+  async ngOnInit() {    
     this.sitioService.getSitio(this.sitio._id).subscribe(resp => {
-      if (resp['ok']) {
-        console.log(resp);
+      if (resp['ok']) {        
         const sitioCompleto: Sitio = resp['sitio'];
         this.sitio.calificaciones = sitioCompleto.calificaciones;
         this.sitio.comentarios = sitioCompleto.comentarios;
-        // console.log(this.sitio);
+        this.comentarios = sitioCompleto.comentarios;
         for (const calificacion of sitioCompleto.calificaciones) {
           if (calificacion.usuario._id === this.usuarioService.usuario._id) {
             if (calificacion.valor) {
@@ -176,46 +175,47 @@ export class DetalleSitioComponent implements OnInit {
     }
 
     this.comentarioService.crearComentario(comentario).subscribe(resp => {
-      console.log(resp);
-      this.sitio = resp['sitio'];
-
+      //console.log(resp);
+      //this.sitio = resp['sitio'];
+      this.comentarios = resp['sitio'].comentarios;
+      this.sitio.comentarios = this.comentarios;
       setTimeout(() => this.content.scrollToBottom(300), 500);
     });
   }
 
-  async mostrarFormaBorrarComentario(comentarioId: string, sitioId: string, index: number) {
-    const alert = await this.alertController.create({
-      // cssClass: 'my-custom-class',
-      // header: '',
-      message: '¿Está seguro de eliminar el comentario?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Si',
-          handler: () => {
-            this.borrarComentario(comentarioId, sitioId);
+  // async mostrarFormaBorrarComentario(comentarioId: string, sitioId: string, index: number) {
+  //   const alert = await this.alertController.create({
+  //     // cssClass: 'my-custom-class',
+  //     // header: '',
+  //     message: '¿Está seguro de eliminar el comentario?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancelar',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         handler: (blah) => {
+  //           console.log('Confirm Cancel: blah');
+  //         }
+  //       }, {
+  //         text: 'Si',
+  //         handler: () => {
+  //           this.borrarComentario(comentarioId, sitioId);
 
-          }
-        }
-      ]
-    });
+  //         }
+  //       }
+  //     ]
+  //   });
 
-    await alert.present();
-  }
+  //   await alert.present();
+  // }
 
-  borrarComentario(comentarioId: string, sitioId: string) {
-    this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe(resp => {
-      if (resp['ok']) {
-        this.sitio = resp['sitio'];
-      }
-    })
-  }
+  // borrarComentario(comentarioId: string, sitioId: string) {
+  //   this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe(resp => {
+  //     if (resp['ok']) {
+  //       this.sitio = resp['sitio'];
+  //     }
+  //   })
+  // }
 
 
   abrirURL(url: string) {
@@ -246,6 +246,11 @@ export class DetalleSitioComponent implements OnInit {
         this.iconoDislike = 'thumbs-down';
       }
     })
+  }
+
+  refrescarComentarios(comentarios) {
+    this.comentarios = comentarios;
+    this.sitio.comentarios = this.comentarios;
   }
 
   abrirTelefono(numero: string){
