@@ -6,7 +6,8 @@
 
       </ion-button>
     </ion-buttons>
-    <ion-title>{{sitio.nombreEs}}</ion-title>
+    <ion-title *ngIf="idioma === 'es'">{{sitio.nombreEs}}</ion-title>
+    <ion-title *ngIf="idioma === 'en'">{{sitio.nombreEn}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +15,7 @@
 <ion-content [style]=" ( sitio.imagenPortada | imagen: 'sitio'
 : 'cover'
 : sitio._id ) | imagenPortada" #content>
-  <!-- <div style="background-image: url(assets/img/cover.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; position: absolute; z-index: -1;"></div>  -->
+
   <div class="header" [style]=" ( sitio.imagenPortada | imagen: 'sitio'
   : 'cover'
   : sitio._id ) | imagenPortada">
@@ -22,14 +23,14 @@
     <div class="space-between">
       <div class="followings">
         <ion-badge mode="ios">
-          <div>{{sitio.calificaciones | numeroLikes }} Me gusta</div>
+          <div>{{sitio.calificaciones | numeroLikes }} {{'place.likes' | translate }}</div>
         </ion-badge>
         <!-- <p>{{ 'profile.likes' | translate }}</p>    -->
       </div>
 
       <div class="followings">
         <ion-badge mode="ios">
-          <div>{{sitio.comentarios.length}} Commentarios</div>
+          <div>{{sitio.comentarios.length}} {{'place.comments' | translate }}</div>
         </ion-badge>
         <!-- <p>{{ 'profile.saved' | translate }}</p> -->
       </div>
@@ -42,7 +43,7 @@
         <div class="img-box" [style]=" ( sitio.imagenPerfil | imagen: 'sitio'
         : 'profile'
         : sitio._id ) | imagenPerfil">
-          <!-- <img src="assets/img/167030.jpg" alt="">     -->
+     
         </div>
       </div>
     </div>
@@ -57,13 +58,16 @@
 
             <ion-card-subtitle>
               <ion-icon name="information-circle-outline"></ion-icon>
-              Información general
+              {{'place.generalInformation' | translate }}
             </ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
-            <p class="overview" style="padding-top: 5px; color: #fafafa;">
+            <p class="overview" style="padding-top: 5px; color: #fafafa;" *ngIf="idioma === 'es'">
               {{sitio.descripcionEs}}
+            </p>
+            <p class="overview" style="padding-top: 5px; color: #fafafa;" *ngIf="idioma === 'en'">
+              {{sitio.descripcionEn}}
             </p>
           </ion-card-content>
         </ion-card>
@@ -75,7 +79,7 @@
 
             <ion-card-subtitle>
               <ion-icon name="chatbubble-outline"></ion-icon>
-              Contacto
+              {{'place.contact' | translate }}
             </ion-card-subtitle>
           </ion-card-header>
 
@@ -112,7 +116,7 @@
 
             <ion-card-subtitle>
               <ion-icon name="location-outline"></ion-icon>
-              Ubicacion
+              {{'place.location' | translate }}
             </ion-card-subtitle>
           </ion-card-header>
 
@@ -136,14 +140,14 @@
     <!-- !SECTION - -->
 
     <!-- SECTION - Galeria -->
-    <ion-row>
+    <ion-row *ngIf="sitio.fotos.length > 0">
       <ion-col size="12">
         <ion-card>
           <ion-card-header color="primary">
 
             <ion-card-subtitle>
               <ion-icon name="images-outline"></ion-icon>
-              Galería
+              {{'place.gallery' | translate }}
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
@@ -169,20 +173,6 @@
 
         <app-lista-comentarios [comentarios] ="comentarios" [usuario]="usuario" [sitioId]="sitio._id" (enviarComentarios)= "refrescarComentarios($event)"> </app-lista-comentarios>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </ion-col>
     </ion-row>
     <ion-row>
@@ -200,7 +190,7 @@
     <ion-buttons slot="start">
       <ion-button (click)="comentar()">
         <ion-icon slot="start" name="chatbox-ellipses" color="gray"></ion-icon>
-        <ion-label color="gray">Comentar</ion-label>
+        <ion-label color="gray">{{'place.comment' | translate }}</ion-label>
       </ion-button>
     </ion-buttons>
 

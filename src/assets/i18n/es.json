@@ -20,6 +20,17 @@
         "favoritePlaces": "Lugares favoritos",
         "signOut": "Cerrar sesión"
     },
+
+   "place": {
+        "places": "Sitios",
+        "likes": "Me gusta",
+        "comments": "Comentarios",
+        "generalInformation": "Información general",
+        "contact": "Contacto",
+        "location": "Ubicación",
+        "gallery": "Galería",
+        "comment": "Comentar"
+    }, 
     
     "tabs" : {
         "catalogue": "Catálogo",

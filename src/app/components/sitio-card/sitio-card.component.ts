@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Sitio } from 'src/app/interfaces/sitio.interface';
 import { ModalController } from '@ionic/angular';
 import { DetalleSitioComponent } from '../detalle-sitio/detalle-sitio.component';
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
   selector: 'app-sitio-card',
@@ -11,8 +12,11 @@ import { DetalleSitioComponent } from '../detalle-sitio/detalle-sitio.component'
 export class SitioCardComponent implements OnInit {
 
   @Input() sitio: Sitio = {};
+  idioma = '';
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private translation: TranslationService) { 
+    this.idioma = translation.language;
+  }
 
   ngOnInit() { }
 

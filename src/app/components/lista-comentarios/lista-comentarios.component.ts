@@ -3,6 +3,7 @@ import { Comentario } from 'src/app/interfaces/comentario.interface';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { AlertController } from '@ionic/angular';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { TranslationService } from 'src/app/services/translation.service';
 
 
 @Component({
@@ -15,9 +16,12 @@ export class ListaComentariosComponent implements OnInit {
   @Input() comentarios: Comentario[] = [];
   @Input() usuario: Usuario;
   @Input() sitioId: string;
-  @Output() enviarComentarios = new EventEmitter<Comentario[]>()
+  @Output() enviarComentarios = new EventEmitter<Comentario[]>();
+  idioma = '';
 
-  constructor(private alertController: AlertController, private comentarioService: ComentarioService) { }
+  constructor(private alertController: AlertController, private comentarioService: ComentarioService, private translation: TranslationService) { 
+    this.idioma = translation.language;
+  }
 
   ngOnInit() {}
 

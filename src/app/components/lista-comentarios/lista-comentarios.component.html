@@ -5,12 +5,12 @@
       <ion-card *ngIf="comentario.estaActivo">
         <ion-item>
           <ion-avatar slot="start">
-            <img [src]="'/assets/avatars/'+comentario.usuario.avatar" *ngIf="usuario.tipo === 'email' || usuario.tipo ==='anonimo'">
-            <img [src]="usuario.avatar" *ngIf="usuario.tipo !== 'email' && usuario.tipo !=='anonimo'">
+            <img [src]="'/assets/avatars/'+comentario.usuario.avatar" *ngIf="comentario.usuario.tipo === 'email' || comentario.usuario.tipo ==='anonimo'">
+            <img [src]="comentario.usuario.avatar" *ngIf="comentario.usuario.tipo === 'facebook' || comentario.usuario.tipo ==='google'">
           </ion-avatar>
           <ion-label>
             <h3>{{comentario.usuario.nickname}}</h3>
-            <p>{{ comentario.created | fecha: 'en'}}</p>
+            <p><small>{{ comentario.created | fecha: idioma}}</small></p>
           </ion-label>
         </ion-item>
 

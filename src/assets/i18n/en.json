@@ -20,6 +20,17 @@
         "favoritePlaces": "Favorite Places",
         "signOut": "Sign out"
     },
+
+    "place": {
+        "places": "Places",
+        "likes": "Likes",
+        "comments": "Comments",
+        "generalInformation": "General information",
+        "contact": "Contact",
+        "location": "Location",
+        "gallery": "Gallery",
+        "comment": "Comment"
+    },
     
     "tabs" : {
         "catalogue": "Catalogue",

@@ -3,13 +3,19 @@
    : 'cover'
    : sitio._id" alt="ion">
   <ion-card-header>
-    <ion-card-title>{{sitio.nombreEs}}</ion-card-title>
+    <ion-card-title *ngIf="idioma==='es'">{{sitio.nombreEs}}</ion-card-title>
+    <ion-card-title *ngIf="idioma==='en'">{{sitio.nombreEn}}</ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
-    <p class="overview">
-      {{sitio.descripcionEs | slice: 0:150}}
+    <p class="overview" *ngIf="idioma==='es'">
+      {{sitio.descripcionEs | slice: 0:120}}
       <ion-label color="primary">...Leer más!</ion-label>
+    </p>
+
+    <p class="overview" *ngIf="idioma==='en'">
+      {{sitio.descripcionEn | slice: 0:120}}
+      <ion-label color="primary">...Read more!</ion-label>
     </p>
   </ion-card-content>
 
@@ -21,22 +27,15 @@
         <ion-col center style="text-align: center;">
           <ion-badge color="success">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{sitio.calificaciones.length}} Me gusta</div>
+            <div>{{sitio.calificaciones.length}} {{'place.likes' | translate}}</div>
           </ion-badge>         
         </ion-col>
         <ion-col center style="text-align: center;">
           <ion-badge color="tertiary">
             <ion-icon name="text"></ion-icon>
-            <div>{{sitio.comentarios.length}} Commentarios</div>
+            <div>{{sitio.comentarios.length}} {{'place.comments' | translate}}</div>
           </ion-badge>          
         </ion-col>
-        <!-- <ion-col center style="text-align: center;">
-          <ion-badge color="medium">
-            <ion-icon name="time"></ion-icon>
-            <div>11h ago</div>
-          </ion-badge> 
-       
-        </ion-col> -->
       </ion-row>      
     </ion-grid>
   </ion-footer>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/interfaces/categoria.interface';
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
   selector: 'app-categoria',
@@ -12,8 +13,11 @@ export class CategoriaComponent implements OnInit {
   @Input() categoria: Categoria;
 
   img1: string = '/assets/img/cover.jpg'; 
+  idioma = '';
 
-  constructor( private router: Router) { }
+  constructor( private router: Router, translation: TranslationService) {
+    this.idioma = translation.language;
+   }
 
   ngOnInit() {
     // console.log(this.categoria);

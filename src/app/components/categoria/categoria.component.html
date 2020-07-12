@@ -5,6 +5,7 @@
   (click)="verSitios( categoria._id )">
 
   <ion-card-header>
-    <div class="card-title">{{categoria.nombreEs}}</div>
+    <div class="card-title" *ngIf="idioma === 'es'">{{categoria.nombreEs}}</div>
+    <div class="card-title" *ngIf="idioma === 'en'">{{categoria.nombreEn}}</div>
   </ion-card-header>
 </ion-card>

@@ -9,10 +9,6 @@
     <ion-slides [options]="avatarSlide">
       <ion-slide *ngFor="let avatar of avatars">
         <img src="/assets/avatars/{{avatar.img}}"  class="pick-avatar" alt="" [ngClass]="{'pick-avatar-seleccionado': avatar.seleccionado}" (click)="seleccionarAvatar( avatar )">
-        <!-- <ion-img class="pick-avatar" 
-          >
-        </ion-img> -->
-        <!-- <ion-label style="color: white;">.</ion-label> -->
       </ion-slide>
     </ion-slides>
   </ion-col>

@@ -11,7 +11,6 @@ import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.compo
 import { DetalleSitioComponent } from './detalle-sitio/detalle-sitio.component';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
-import { CardComentarioComponent } from './card-comentario/card-comentario.component';
 import { ListaComentariosComponent } from './lista-comentarios/lista-comentarios.component';
 
 //Translation
@@ -29,8 +28,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AvatarSelectorComponent,
     DetalleSitioComponent,
     ImageModalComponent,
-    SlideshowPosterComponent,
-    CardComentarioComponent,
+    SlideshowPosterComponent,    
     ListaComentariosComponent
   ],
   imports: [
@@ -51,8 +49,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     CategoriasComponent,
     SitiosListaComponent,
     AvatarSelectorComponent,
-    SlideshowPosterComponent,
-    CardComentarioComponent,
+    SlideshowPosterComponent,    
     ListaComentariosComponent
   ],
 

@@ -14,6 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Calificacion } from 'src/app/interfaces/calificacion.interface';
 import { SitioService } from 'src/app/services/sitio.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
   selector: 'app-detalle-sitio',
@@ -31,6 +32,7 @@ export class DetalleSitioComponent implements OnInit {
   iconoDislike = 'thumbs-down-outline';
   usuario: Usuario;
   comentarios: Comentario[] = [];
+  idioma = '';
 
   constructor(private modalController: ModalController,
     private alertController: AlertController,
@@ -40,8 +42,9 @@ export class DetalleSitioComponent implements OnInit {
     private usuarioService: UsuarioService,
     private comentarioService: ComentarioService,
     private sitioService: SitioService,
-    private callNumber: CallNumber) {
-
+    private callNumber: CallNumber,
+    private translation: TranslationService) {
+      this.idioma = translation.language;
   }
 
   async ngOnInit() {    
@@ -182,41 +185,6 @@ export class DetalleSitioComponent implements OnInit {
       setTimeout(() => this.content.scrollToBottom(300), 500);
     });
   }
-
-  // async mostrarFormaBorrarComentario(comentarioId: string, sitioId: string, index: number) {
-  //   const alert = await this.alertController.create({
-  //     // cssClass: 'my-custom-class',
-  //     // header: '',
-  //     message: '¿Está seguro de eliminar el comentario?',
-  //     buttons: [
-  //       {
-  //         text: 'Cancelar',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: (blah) => {
-  //           console.log('Confirm Cancel: blah');
-  //         }
-  //       }, {
-  //         text: 'Si',
-  //         handler: () => {
-  //           this.borrarComentario(comentarioId, sitioId);
-
-  //         }
-  //       }
-  //     ]
-  //   });
-
-  //   await alert.present();
-  // }
-
-  // borrarComentario(comentarioId: string, sitioId: string) {
-  //   this.comentarioService.borrarComentario(comentarioId, sitioId).subscribe(resp => {
-  //     if (resp['ok']) {
-  //       this.sitio = resp['sitio'];
-  //     }
-  //   })
-  // }
-
 
   abrirURL(url: string) {
     // const browser = this.iab.create(url);
