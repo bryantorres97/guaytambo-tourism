@@ -1,7 +1,7 @@
 
 <ion-content>
   <div class="header">
-    <h2>{{usuario.nickname}}</h2>
+    <h2>{{usuario?.nickname || 'Invitado'}}</h2>
 
     <div class="space-between">
       <!-- <div class="followings">
@@ -10,7 +10,7 @@
       </div> -->
 
       <div class="followings">
-        <ion-badge color="primary" mode="ios">{{usuario.favoritos.length}}</ion-badge>
+        <ion-badge color="primary" mode="ios">{{usuario?.favoritos?.length || 0}}</ion-badge>
         <p>{{ 'profile.saved' | translate }}</p>
       </div>
     </div>
@@ -37,7 +37,7 @@
                   (ionChange)="changeTheme()"></ion-toggle>
     </ion-item>
   </ion-list>
-  <h3>Tus favoritos</h3>
+  <h3>{{'profile.favoritePlaces' | translate}}</h3>
   <app-slideshow-poster [favoritos]="usuario.favoritos"></app-slideshow-poster>
 
   <ion-list>

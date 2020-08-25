@@ -13,9 +13,10 @@ import { NavController } from '@ionic/angular';
 export class Tab4Page {
 
   darkMode: boolean;
-  usuario: Usuario;
+  usuario: Usuario = this.usuarioService.usuario;
 
   constructor(private themeService: ThemeService, private usuarioService: UsuarioService, private auth: FireAuthService, private navController: NavController) {    
+    console.log( this.usuarioService.usuario)
     this.darkMode = themeService.darkMode;
     this.usuario = this.usuarioService.usuario;    
   }

@@ -148,17 +148,16 @@ export class LoginPage implements OnInit {
   }
 
 
-  loginAnonimo() {
-    this.auth.loginAnonimo().then((response) => {
-      this.usuario = {
-        tipo: 'anonimo',
-        avatar: 'av-1.png',
-        nickname: 'Invitado'
-      }
-      this.usuarioService.usuario = this.usuario;
-      this.usuarioService.setUsuario(this.usuarioService.usuario);
-      this.navController.navigateRoot('main/tabs/tab1', { animated: true });
-    })
+  async loginAnonimo() {
+    await this.auth.loginAnonimo();
+    this.usuario = {
+      tipo: 'anonimo',
+      avatar: 'av-1.png',
+      nickname: 'Invitado'
+    }
+    this.usuarioService.usuario = this.usuario;
+    this.usuarioService.setUsuario(this.usuarioService.usuario);
+    this.navController.navigateRoot('main/tabs/tab1', { animated: true });
   }
 
   async registroMail(fRegistro: NgForm) {
